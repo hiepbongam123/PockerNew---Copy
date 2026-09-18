@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9fe5333be3fd945a7a8a1f1e4ef982, type: 3}
+  m_Name: Campaign_Generated
+  m_EditorClassIdentifier: 
+  campaignName: "Con \u0110\u01B0\u1EDDng Anh H\xF9ng"
+  starterCards: []
+  maxCopiesPerCard: 1
+  champions:
+  - {fileID: 11400000, guid: 0b205b8121854f04d9703d598705efd5, type: 2}
+  - {fileID: 11400000, guid: c2315151f01eefb458d915b4f1511952, type: 2}
+  - {fileID: 11400000, guid: 22d010b4045a7a147897a142e476f94d, type: 2}
+  relicPool: []
+  chestCardPool:
+  - {fileID: 11400000, guid: 8fb9f315ec0726247bdb82af2552bc18, type: 2}
+  - {fileID: 11400000, guid: a65e2896f3a44744d97976e82e309161, type: 2}
+  - {fileID: 11400000, guid: 3fbc084e546122b45aa3e1709ab97c53, type: 2}
+  championPowers:
+  - {fileID: 11400000, guid: 93fd155dd7cbe68419866da808071fae, type: 2}
+  cardItemLibrary: {fileID: 11400000, guid: 45a4e32b259b9a1469706e5365587bdb, type: 2}
+  powerPool: []
+  powerCores:
+  - {fileID: 11400000, guid: 3c5055f1c936594498c0b0ab02508af7, type: 2}
+  - {fileID: 11400000, guid: 01c00a08d4b979d4db49742c228beb95, type: 2}
+  - {fileID: 11400000, guid: 7db34f45d20f4e64b9700e6e83adf884, type: 2}
+  - {fileID: 11400000, guid: 59d6086e7475361439c4910b198919d7, type: 2}
+  - {fileID: 11400000, guid: f42d57f787fe26f479c3512b01390bbf, type: 2}
+  - {fileID: 11400000, guid: 1c8788f00d2a70943b58dc6107a6497e, type: 2}
+  - {fileID: 11400000, guid: 81767d3f05d522542a2b3e7cf15884ca, type: 2}
+  - {fileID: 11400000, guid: cf69679a8d4a89845a9283072c65fdcc, type: 2}
+  levels:
+  - {fileID: 11400000, guid: 33800aaff2cd3c64796f016822a936a1, type: 2}
+  - {fileID: 11400000, guid: f47e1b098ea5e134aaf4618e2be733d3, type: 2}
+  - {fileID: 11400000, guid: 0b0f5946f773b974eb75e1c2235abe0d, type: 2}
+  - {fileID: 11400000, guid: e8703be4f3671944bbfcdfee1db16143, type: 2}
+  - {fileID: 11400000, guid: fb6865a5556dff84fb9751a3ec0f58f4, type: 2}
+  - {fileID: 11400000, guid: ad7b3a11e0af3744ba4ddda62f1edac2, type: 2}
+  - {fileID: 11400000, guid: 970461aae6e084b49ae7b7ed3f9d72a5, type: 2}
+  - {fileID: 11400000, guid: 0e67ef6ecc0f5d64495cf2d76317adae, type: 2}
+  adventures:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bossModifierPool: []
+  miniBossModifierPool: []
+  eliteModifierPool: []
+  adventureSpecialRules: []

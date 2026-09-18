@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441e7df6861711a45b608d829372a429, type: 3}
+  m_Name: PhainonDeck
+  m_EditorClassIdentifier: 
+  deckName: PhainonDeck
+  cards:
+  - {fileID: 11400000, guid: 3e2e21ae7d3bbba4d94a7290ef0934f6, type: 2}
+  - {fileID: 11400000, guid: 803c5f2e00e420f49aeda55562fe1c04, type: 2}
+  - {fileID: 11400000, guid: 0d46a2aa23bcfe248b3fb9ce81fe098f, type: 2}
+  - {fileID: 11400000, guid: 803c5f2e00e420f49aeda55562fe1c04, type: 2}
+  - {fileID: 11400000, guid: ff6ef52a1ee329d4790a3bc0c5516ea4, type: 2}
+  - {fileID: 11400000, guid: c120f886138aa644dbe99d7bf3dddf11, type: 2}
+  - {fileID: 11400000, guid: f2f12ccf60a199f4c96f190cd41e36a0, type: 2}
+  - {fileID: 11400000, guid: 974b0379b6ef7e84fbc59c079de39603, type: 2}
+  - {fileID: 11400000, guid: 73555d898f95b0a47a3efd7bb7e35748, type: 2}
+  - {fileID: 11400000, guid: 666e6e344702ec04ba1d00ad92412716, type: 2}
+  - {fileID: 11400000, guid: 0e8ba5e6d803db74f8b67ea3bbae6441, type: 2}
+  - {fileID: 11400000, guid: bf5dd8b8df1fbc74ea0e23414cfa041a, type: 2}
+  - {fileID: 11400000, guid: 621d11f9f36526a4eac963dce62bc873, type: 2}
+  - {fileID: 11400000, guid: da1279a88af530d42bf1fc0a26fa0124, type: 2}
+  - {fileID: 11400000, guid: bf5dd8b8df1fbc74ea0e23414cfa041a, type: 2}

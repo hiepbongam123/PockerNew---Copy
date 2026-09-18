@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Cafeen
+  m_EditorClassIdentifier: 
+  cardName: Cafeen
+  cardType: 0
+  guaranteedInOpeningHand: 1
+  description: "Th\xE1ch \u0111\u1EA5u k\u1EBB \u0111\u1ECBch nh\u1EADn +3|+3.\nKhi
+    v\xE0o giao tranh s\u1EBD ra k\u1EF9 Qu\xE9t s\u1EA1ch.\nG\xE2y t\u1ED5ng 35
+    s\u1EBD t\u1EA1o 1 l\xE1 H\u1EE7y Di\u1EC7t \u0110\u1EA5u Tr\u01B0\u1EDDng (t\u1EA1o
+    l\u1EA1i m\u1ED7i khi g\xE2y 15 s\xE1t th\u01B0\u01A1ng)"
+  baseHealth: 5
+  baseAttack: 3
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 2
+  artwork: {fileID: 2800000, guid: 5688aa528b0f3ed438479887cb739ffb, type: 3}
+  artworkFocalX: 0.5
+  artworkFocalY: 0.65
+  artworkZoom: 3
+  keywords: 
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities: []
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 6
+    trigger: 14
+    threshold: 10
+    requiredTag: 
+  levelUpCondition: "G\xE2y 10 s\xE1t th\u01B0\u01A1ng"
+  levelUpCinematic: {fileID: 32900000, guid: 2259ddd5b9fa0b54295d02c0103a8a95, type: 3}
+  levelUpVoiceLines:
+  - {fileID: 8300000, guid: 01be34241e82ca043bc770be94930eb0, type: 3}
+  - {fileID: 8300000, guid: c2d5d3779d1cad64eb430ed4697ce7f8, type: 3}
+  - {fileID: 8300000, guid: 503ac2c2c0802de4b8395cf5c155317a, type: 3}
+  isGenerated: 0
+  cardCreationTriggers:
+  - counter: 1
+    scope: 0
+    firstAt: 0
+    threshold: 10
+    repeatEvery: 1
+    cardToCreate: {fileID: 11400000}
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 11400000, guid: 1fc27ccfae90a43499021ea94f3a5f49, type: 2}
+  unitSkillOnAttack: 1
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  summonUnits: []
+  tags: []
+  relatedCardsLabel: 
+  relatedCards:
+  - {fileID: 11400000, guid: a303f36f711b470458e5404091373a9a, type: 2}
+  - {fileID: 11400000, guid: 37fd4c385d8cd9a418a92693bbaaf359, type: 2}
+  - {fileID: 11400000, guid: 1fc27ccfae90a43499021ea94f3a5f49, type: 2}

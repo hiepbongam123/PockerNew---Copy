@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Hyecine
+  m_EditorClassIdentifier: 
+  cardName: Hyecine
+  cardType: 0
+  description: "Khi ta ph\xE1t \u0111\u1ED9ng ph\xF2ng th\u1EE7, ban cho ta 0|+2"
+  baseHealth: 3
+  baseAttack: 1
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: c0f412b5c01a59840b222bc20a81f5bc, type: 3}
+  artworkFocalX: 0.77
+  artworkFocalY: 0.4
+  artworkZoom: 1.3
+  keywords: 01000000
+  abilities:
+  - condition: 2
+    effect: {fileID: 11400000, guid: bcef73c2d5f860445a7a65d3f2f6b214, type: 2}
+    p1: -1
+    p2: 3
+    p3: -1
+    description: 
+  - condition: 0
+    effect: {fileID: 11400000, guid: 38937f1f04078394ab29454726c83560, type: 2}
+    p1: -1
+    p2: -1
+    p3: -1
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpCondition: 
+  isGenerated: 0
+  spellManaTriggers: []
+  damageTakenTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  relatedCardsLabel: 
+  relatedCards: []

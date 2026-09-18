@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668b46b5b29dd5347a2c2a5ee1e47f08, type: 3}
+  m_Name: Power
+  m_EditorClassIdentifier: 
+  powerName: Power
+  description: "th\xEAm 5 mana kh\u1EDFi \u0111\u1EA7u"
+  icon: {fileID: 790185337, guid: 7f8e2da7d1022054ebc5157bb92e4395, type: 3}
+  rarity: 0
+  goldCost: 200
+  firstCardManaDiscount: 0
+  bonusStartMana: 5
+  bonusNexus: 0
+  refillSpellManaEachRound: 0
+  firstUnitBuffAtk: 0
+  firstUnitBuffHp: 0
+  extraReroll: 0

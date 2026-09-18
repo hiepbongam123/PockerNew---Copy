@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e96b3bbb6f95ae4586fb077e48a82d4, type: 3}
+  m_Name: CardItemLibrary
+  m_EditorClassIdentifier: 
+  items:
+  - itemName: "Gi\xE1p V\u1EA3i"
+    rarity: 0
+    atkBonus: 0
+    hpBonus: 1
+    costReduction: 0
+    grantsKeyword: 0
+    keyword: 0
+    skill: {fileID: 0}
+    icon: {fileID: 1291003001, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 1
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 100
+    coreCost: 100
+    unlockMasteryLevel: 1
+  - itemName: "B\xFAa G\u1ED7"
+    rarity: 1
+    atkBonus: 1
+    hpBonus: 0
+    costReduction: 0
+    grantsKeyword: 0
+    keyword: 5
+    skill: {fileID: 0}
+    icon: {fileID: 1662111427, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 1
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 100
+    coreCost: 100
+    unlockMasteryLevel: 1
+  - itemName: "Gi\xE0y V\u1EA3i"
+    rarity: 0
+    atkBonus: 0
+    hpBonus: 0
+    costReduction: 1
+    grantsKeyword: 0
+    keyword: 5
+    skill: {fileID: 0}
+    icon: {fileID: 1187388376, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 1
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 100
+    coreCost: 100
+    unlockMasteryLevel: 1
+  - itemName: "Ki\u1EBFm C\xF9n"
+    rarity: 1
+    atkBonus: 3
+    hpBonus: 0
+    costReduction: 0
+    grantsKeyword: 0
+    keyword: 2
+    skill: {fileID: 0}
+    icon: {fileID: 676309480, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 1
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 200
+    coreCost: 200
+    unlockMasteryLevel: 1
+  - itemName: "GI\xE1p V\u1EE1"
+    rarity: 1
+    atkBonus: 0
+    hpBonus: 3
+    costReduction: 0
+    grantsKeyword: 0
+    keyword: 5
+    skill: {fileID: 0}
+    icon: {fileID: -1108695834, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 0
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 200
+    coreCost: 200
+    unlockMasteryLevel: 1
+  - itemName: "S\u1EE9c M\u1EA1nh"
+    rarity: 2
+    atkBonus: 2
+    hpBonus: 0
+    costReduction: 0
+    grantsKeyword: 1
+    keyword: 5
+    skill: {fileID: 0}
+    icon: {fileID: -1108695834, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 1
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 500
+    coreCost: 500
+    unlockMasteryLevel: 1
+  - itemName: "T\u1EA7m Nh\xECn"
+    rarity: 2
+    atkBonus: 0
+    hpBonus: 2
+    costReduction: 0
+    grantsKeyword: 1
+    keyword: 4
+    skill: {fileID: 0}
+    icon: {fileID: 1703814819, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 1
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 1
+    coreCost: 1
+    unlockMasteryLevel: 1
+  - itemName: "Huy\u1EBFt T\u1EF1"
+    rarity: 1
+    atkBonus: 0
+    hpBonus: 3
+    costReduction: 0
+    grantsKeyword: 0
+    keyword: 1
+    skill: {fileID: 0}
+    icon: {fileID: -1108695834, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 1
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 1
+    coreCost: 1
+    unlockMasteryLevel: 1
+  - itemName: "L\u1EC7nh Ch\xFA"
+    rarity: 2
+    atkBonus: 0
+    hpBonus: 0
+    costReduction: 0
+    grantsKeyword: 0
+    keyword: 1
+    skill: {fileID: 11400000, guid: 5daf983f853f6e245862ff8596cb7b45, type: 2}
+    icon: {fileID: -1235008099, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 0
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 1
+    coreCost: 1
+    unlockMasteryLevel: 1
+  - itemName: "C\u1ED5 T\u1EF1"
+    rarity: 1
+    atkBonus: 0
+    hpBonus: 0
+    costReduction: 2
+    grantsKeyword: 0
+    keyword: 1
+    skill: {fileID: 0}
+    icon: {fileID: -1843145571, guid: 1892907680cd8f1479c4685feba1508f, type: 3}
+    championEquip: 1
+    bonusMana: 0
+    bonusNexus: 0
+    sellInShop: 1
+    goldCost: 200
+    coreCost: 200
+    unlockMasteryLevel: 1

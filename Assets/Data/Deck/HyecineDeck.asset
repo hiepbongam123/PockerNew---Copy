@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441e7df6861711a45b608d829372a429, type: 3}
+  m_Name: HyecineDeck
+  m_EditorClassIdentifier: 
+  deckName: HyecineDeck
+  cards:
+  - {fileID: 11400000, guid: dae9a969b21f444468a4c5e852625239, type: 2}
+  - {fileID: 11400000, guid: dae9a969b21f444468a4c5e852625239, type: 2}
+  - {fileID: 11400000, guid: dae9a969b21f444468a4c5e852625239, type: 2}
+  - {fileID: 11400000, guid: 803c5f2e00e420f49aeda55562fe1c04, type: 2}
+  - {fileID: 11400000, guid: 803c5f2e00e420f49aeda55562fe1c04, type: 2}
+  - {fileID: 11400000, guid: f2f12ccf60a199f4c96f190cd41e36a0, type: 2}
+  - {fileID: 11400000, guid: c120f886138aa644dbe99d7bf3dddf11, type: 2}
+  - {fileID: 11400000, guid: c120f886138aa644dbe99d7bf3dddf11, type: 2}
+  - {fileID: 11400000, guid: 974b0379b6ef7e84fbc59c079de39603, type: 2}
+  - {fileID: 11400000, guid: 974b0379b6ef7e84fbc59c079de39603, type: 2}
+  - {fileID: 11400000, guid: f2f12ccf60a199f4c96f190cd41e36a0, type: 2}
+  - {fileID: 11400000, guid: c120f886138aa644dbe99d7bf3dddf11, type: 2}
+  - {fileID: 11400000, guid: 6534dc38517cc0344b055a3902f644f4, type: 2}
+  - {fileID: 11400000, guid: ce1cf590e91e8c747a5cb99c1689a6a9, type: 2}
+  - {fileID: 11400000, guid: f0b812de73eb7c341b4739a6b4d6b1b8, type: 2}

@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Anglea
+  m_EditorClassIdentifier: 
+  cardName: Anglea
+  cardType: 0
+  guaranteedInOpeningHand: 1
+  description: "Khi ta t\u1EA5n c\xF4ng, ban cho ta +3|0.v\xE0 tri\u1EC7u h\u1ED3i
+    Th\u1EE3 May c\xF9ng t\u1EA5n c\xF4ng"
+  baseHealth: 1
+  baseAttack: 1
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: a88b1fb5c280d224bbdade221034cb1e, type: 3}
+  artworkFocalX: 0.42
+  artworkFocalY: 0.72
+  artworkZoom: 2
+  keywords: 02000000
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities:
+  - condition: 1
+    effect: {fileID: 11400000, guid: 0d945f4e3f031ce439430f394eeaa17b, type: 2}
+    p1: 3
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    grantKeyword: 0
+    grantKeywordType: 2
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  - condition: 1
+    effect: {fileID: 11400000, guid: e93d85c7d4fcb6a4cbd9e48d74b672f9, type: 2}
+    p1: 1
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    grantKeyword: 0
+    grantKeywordType: 2
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  skills: []
+  canLevelUp: 1
+  levelUpForm: {fileID: 11400000, guid: 07350237263ed0c4fb365077fc2882c4, type: 2}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 15
+    threshold: 2
+    requiredTag: 
+  levelUpCondition: "Ta ra \u0111\xF2n 2 l\u1EA7n"
+  levelUpCinematic: {fileID: 32900000, guid: a7eafcec695fc3242b2a2b3b858fbb58, type: 3}
+  levelUpVoiceLines:
+  - {fileID: 8300000, guid: 95b3fe7610408cf41a0102bf5ee25627, type: 3}
+  - {fileID: 8300000, guid: f9619f1eeface39458d636da4c64ce43, type: 3}
+  - {fileID: 8300000, guid: 9fdba32034f369d43b541cecd5486ad8, type: 3}
+  - {fileID: 8300000, guid: 69b90659a852d8f41900c521031861ba, type: 3}
+  isGenerated: 0
+  cardCreationTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: efc2fd01081a4b64196fc6667ca73497, type: 2}
+  summonUnits:
+  - {fileID: 11400000, guid: 0c4d06c76dcdbd5478c2c300aed68d5a, type: 2}
+  tags: []
+  relatedCardsLabel: 
+  relatedCards:
+  - {fileID: 11400000, guid: da1279a88af530d42bf1fc0a26fa0124, type: 2}
+  - {fileID: 11400000, guid: 0c4d06c76dcdbd5478c2c300aed68d5a, type: 2}
+  - {fileID: 11400000, guid: 07350237263ed0c4fb365077fc2882c4, type: 2}
+  - {fileID: 11400000, guid: 07350237263ed0c4fb365077fc2882c4, type: 2}

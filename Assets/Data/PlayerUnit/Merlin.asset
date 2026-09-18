@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Merlin
+  m_EditorClassIdentifier: 
+  cardName: "Merlin Ph\xF9 Th\xF9y Ph\xE0m \u0102n"
+  cardType: 0
+  guaranteedInOpeningHand: 1
+  description: "Khi \u0111\u01B0\u1EE3c tri\u1EC7u h\u1ED3i, t\u1EA1o k\u1EF9 n\u0103ng
+    Ph\xE1t B\u1EAFn l\xEAn 1 k\u1EBB \u0111\u1ECBch"
+  baseHealth: 2
+  baseAttack: 2
+  spellSpeed: 2
+  requiresTarget: 1
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: 22387e9850b26ef4d95db2242a8e40ea, type: 3}
+  artworkFocalX: 0.65
+  artworkFocalY: 0.7
+  artworkZoom: 2.5
+  keywords: 20000000
+  supportAttackBuff: 2
+  supportHealthBuff: 2
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities: []
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+    requiredTag: 
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  cardCreationTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 11400000, guid: 6e1c32418beaf864b9359633c040de7d, type: 2}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  summonUnits: []
+  tags: []
+  relatedCardsLabel: 
+  relatedCards: []

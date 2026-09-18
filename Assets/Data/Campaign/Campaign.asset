@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9fe5333be3fd945a7a8a1f1e4ef982, type: 3}
+  m_Name: Campaign
+  m_EditorClassIdentifier: 
+  campaignName: "Leo Th\xE1p"
+  starterCards:
+  - {fileID: 11400000, guid: a7642ad5d5b44cc4f9ad23e59cbb8258, type: 2}
+  maxCopiesPerCard: 3
+  champions:
+  - {fileID: 11400000, guid: 0b205b8121854f04d9703d598705efd5, type: 2}
+  - {fileID: 11400000, guid: c2315151f01eefb458d915b4f1511952, type: 2}
+  - {fileID: 11400000, guid: 22d010b4045a7a147897a142e476f94d, type: 2}
+  relicPool: []
+  powerPool: []
+  levels:
+  - {fileID: 11400000, guid: fb79f2da30a8c7642a578d7bacdb8d81, type: 2}
+  - {fileID: 11400000, guid: 4cc0eda53066194408b6f5acdc9f4779, type: 2}
+  - {fileID: 11400000, guid: 5f247c698117c4948893a86b2ab5d846, type: 2}
+  - {fileID: 11400000, guid: e8d681aa2c4336e45ac8ad25bb4b04f4, type: 2}

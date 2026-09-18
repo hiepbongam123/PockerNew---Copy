@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Divine
+  m_EditorClassIdentifier: 
+  cardName: "Gi\xE1o N\u1ECBnh Th\u1EA7n"
+  cardType: 2
+  description: "khi v\u1EADt ch\u1EE7 b\u1ECB ti\xEAu di\u1EC7t, n\u1EBFu kh\xF4ng
+    ph\u1EA3i K\xFD SInh Tr\xF9ng  s\u1EBD tri\u1EC7u h\u1ED3i  K\xFD Sinh Tr\xF9ng"
+  baseHealth: 1
+  baseAttack: 1
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: f9928bca265180c44b6c2643dfcfa99a, type: 3}
+  artworkFocalX: 0.5
+  artworkFocalY: 0.7
+  artworkZoom: 2
+  keywords: 21000000
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  abilities:
+  - condition: 7
+    effect: {fileID: 11400000, guid: 38937f1f04078394ab29454726c83560, type: 2}
+    p1: -1
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  autoEquipOnSummon: {fileID: 0}
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  spellManaTriggers: []
+  damageTakenTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  equipAttackBuff: 1
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 11400000, guid: 50ce5146f8ad0694bb70cd03a6b21a7d, type: 2}
+  audioData: {fileID: 0}
+  relatedCardsLabel: 
+  relatedCards: []

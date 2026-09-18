@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Elite_TinhNhue
+  m_EditorClassIdentifier: Assembly-CSharp:LoRClone.Data:EncounterModifier
+  modName: "Tinh Nhu\u1EC7 V\u0169 Trang"
+  description: 
+  enemyNexusBonus: 0
+  enemyBonusItemSlots: 1
+  enemyBonusItemMinRarity: 1
+  enemyExtraDrawStart: 0
+  enemyBonusSpellMana: 0
+  enemyStartUnits: []
+  enemyDrawPerRound: 0
+  enemyManaPerRound: 0
+  bossPowerName: 
+  bossPowerDesc: 
+  bossGrantKeyword: 0
+  bossKeyword: 12
+  bossHealNexusPerRound: 0
+  bossBoardAtkPerRound: 0
+  bossBoardHpPerRound: 0
+  bossSummonPerRound: {fileID: 0}

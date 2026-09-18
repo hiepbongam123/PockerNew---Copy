@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Blade
+  m_EditorClassIdentifier: 
+  cardName: "Ki\u1EBFm Ma"
+  cardType: 2
+  guaranteedInOpeningHand: 0
+  description: "Ban +1|0 cho v\u1EADt ch\u1EE7 khi ph\xE1t \u0111\u1ED9ng t\u1EA5n
+    c\xF4ng"
+  baseHealth: 1
+  baseAttack: 1
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: f9928bca265180c44b6c2643dfcfa99a, type: 3}
+  artworkFocalX: 0.5
+  artworkFocalY: 0.7
+  artworkZoom: 2
+  keywords: 21000000
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 11400000, guid: a7642ad5d5b44cc4f9ad23e59cbb8258, type: 2}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities:
+  - condition: 1
+    effect: {fileID: 11400000, guid: 0d945f4e3f031ce439430f394eeaa17b, type: 2}
+    p1: 1
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    grantKeyword: 0
+    grantKeywordType: 2
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+    requiredTag: 
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  cardCreationTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 1
+  equipHealthBuff: 1
+  equipGrantKeywords: 05000000
+  darkinUnit: {fileID: 11400000, guid: 50ce5146f8ad0694bb70cd03a6b21a7d, type: 2}
+  audioData: {fileID: 0}
+  summonUnits: []
+  tags: []
+  relatedCardsLabel: 
+  relatedCards: []

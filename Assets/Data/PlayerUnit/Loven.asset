@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Loven
+  m_EditorClassIdentifier: 
+  cardName: "Loven Nh\xFAt Nh\u1EA5t"
+  cardType: 0
+  description: "Khi ta \u0111\u01B0\u1EE3c tri\u1EC7u h\u1ED3i, tri\u1EC7u h\u1ED3i
+    1 unit ng\u1EABu nhi\xEAn trong b\u1ED9 b\xE0i"
+  baseHealth: 1
+  baseAttack: 1
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 2
+  artwork: {fileID: 2800000, guid: 4bcfec4c6dc27b84385e4590bbbee05f, type: 3}
+  artworkFocalX: 0.63
+  artworkFocalY: 0.7
+  artworkZoom: 2.5
+  keywords: 
+  supportAttackBuff: 1
+  supportHealthBuff: 1
+  supportGrantKeywords: 
+  abilities:
+  - condition: 0
+    effect: {fileID: 11400000, guid: 5daf983f853f6e245862ff8596cb7b45, type: 2}
+    p1: -1
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  spellManaTriggers: []
+  damageTakenTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  relatedCardsLabel: 
+  relatedCards: []

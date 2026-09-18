@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: champunit 5
+  m_EditorClassIdentifier: 
+  cardName: A
+  cardType: 0
+  guaranteedInOpeningHand: 0
+  description: "b\xE0i ph\xE9p: t\u1ED1n 12 mana \u0111\u1EC3 tri\u1EC7u h\u1ED3i
+    2 h\u1EADu du\u1EC7 kh\xE1c nhau c\u1EE7a deck. v\u1EDBi ch\u1EC9 s\u1ED1 12|12"
+  baseHealth: 2
+  baseAttack: 2
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: 854de6798d8fe4546a71343040a1739c, type: 3}
+  artworkFocalX: 0.65
+  artworkFocalY: 0.64
+  artworkZoom: 2.5
+  keywords: 
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities:
+  - condition: 0
+    effect: {fileID: 11400000, guid: eac5b17d6db283e43b0f55baef8da787, type: 2}
+    p1: 2
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    grantKeyword: 0
+    grantKeywordType: 2
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+    requiredTag: 
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  spellManaTriggers: []
+  damageTakenTriggers: []
+  damageDealtTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  summonUnits: []
+  tags: []
+  relatedCardsLabel: 
+  relatedCards: []

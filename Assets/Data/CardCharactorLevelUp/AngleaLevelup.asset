@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: AngleaLevelup
+  m_EditorClassIdentifier: 
+  cardName: Anglea The Goldweaver
+  cardType: 0
+  guaranteedInOpeningHand: 0
+  description: "Khi ta t\u1EA5n c\xF4ng, ban cho ta +3|0.v\xE0 tri\u1EC7u h\u1ED3i
+    Th\u1EE3 May c\xF9ng t\u1EA5n c\xF4ng"
+  baseHealth: 2
+  baseAttack: 2
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: b9d84c74434c3aa4d9053c32bd81bc79, type: 3}
+  artworkFocalX: 0.53
+  artworkFocalY: 0.8
+  artworkZoom: 3
+  keywords: 02000000
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities:
+  - condition: 1
+    effect: {fileID: 11400000, guid: 0d945f4e3f031ce439430f394eeaa17b, type: 2}
+    p1: 3
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    grantKeyword: 0
+    grantKeywordType: 2
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  - condition: 1
+    effect: {fileID: 11400000, guid: d5c93d3c37ba7844589401a39aed83cb, type: 2}
+    p1: 1
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    grantKeyword: 0
+    grantKeywordType: 2
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+    requiredTag: 
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  cardCreationTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: efc2fd01081a4b64196fc6667ca73497, type: 2}
+  summonUnits:
+  - {fileID: 11400000, guid: 0c4d06c76dcdbd5478c2c300aed68d5a, type: 2}
+  tags: []
+  relatedCardsLabel: 
+  relatedCards:
+  - {fileID: 11400000, guid: da1279a88af530d42bf1fc0a26fa0124, type: 2}
+  - {fileID: 11400000, guid: 0c4d06c76dcdbd5478c2c300aed68d5a, type: 2}
+  - {fileID: 11400000, guid: 7dd541fd844194c49ad0d707dc43f496, type: 2}

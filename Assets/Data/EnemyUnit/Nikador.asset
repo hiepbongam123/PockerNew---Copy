@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Nikador
+  m_EditorClassIdentifier: 
+  cardName: Nikador
+  cardType: 0
+  guaranteedInOpeningHand: 1
+  description: "khi \u0111\u1ED3ng minh ch\u1EBFt, ta gi\u1EA3m 2 n\u0103ng l\u01B0\u1EE3ng"
+  baseHealth: 12
+  baseAttack: 12
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 8
+  artwork: {fileID: 2800000, guid: 34527a75b615523409ac201a6eccecea, type: 3}
+  artworkFocalX: 0.6
+  artworkFocalY: 0.5
+  artworkZoom: 2
+  keywords: 
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities:
+  - condition: 9
+    effect: {fileID: 11400000, guid: 5f7b1b17d1f16054d913c1dc64e2e22f, type: 2}
+    p1: 2
+    p2: -1
+    p3: -1
+    temporaryBuff: 0
+    grantKeyword: 0
+    grantKeywordType: 2
+    oncePerRound: 0
+    activeZone: 1
+    targetType: 0
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 11400000, guid: dcbe949b1c76cd8408fef0fa12415a46, type: 2}
+  levelUpConfig:
+    conditionType: 7
+    trigger: 1
+    threshold: 2
+    requiredTag: divine
+  levelUpCondition: "c\xF3 5 divine tr\xEAn s\xE2n"
+  levelUpCinematic: {fileID: 32900000, guid: 8f9a89089b7467148acb0a147bf33ab2, type: 3}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  cardCreationTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  summonUnits:
+  - {fileID: 11400000}
+  tags:
+  - divine
+  relatedCardsLabel: "Th\u1EA7n Ph\u1EA1t"
+  relatedCards:
+  - {fileID: 11400000, guid: 0032ea15d13f8524a84f346686087534, type: 2}
+  - {fileID: 11400000, guid: 1f1d0a3f4c0e8794caac096696c71972, type: 2}
+  - {fileID: 11400000, guid: d8c9eab990138224084cf16c02a0ab64, type: 2}
+  - {fileID: 11400000, guid: dbbc8a1f7b2ca024b8de654775464656, type: 2}

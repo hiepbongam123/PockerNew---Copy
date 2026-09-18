@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Boss_ConThinhNo
+  m_EditorClassIdentifier: Assembly-CSharp:LoRClone.Data:EncounterModifier
+  modName: "C\u01A1n Th\u1ECBnh N\u1ED9 C\u1EE7a Boss"
+  description: 
+  enemyNexusBonus: 12
+  enemyBonusItemSlots: 2
+  enemyBonusItemMinRarity: 1
+  enemyExtraDrawStart: 1
+  enemyBonusSpellMana: 0
+  enemyStartUnits: []
+  enemyDrawPerRound: 1
+  enemyManaPerRound: 0
+  bossPowerName: "B\u1EA5t Di\u1EC7t"
+  bossPowerDesc: "To\xE0n qu\xE2n \u0111\u1ECBch c\xF3 H\u1ED3i Ph\u1EE5c \xB7 m\u1ED7i
+    v\xF2ng boss h\u1ED3i 3 Nexus."
+  bossGrantKeyword: 1
+  bossKeyword: 12
+  bossHealNexusPerRound: 3
+  bossBoardAtkPerRound: 0
+  bossBoardHpPerRound: 0
+  bossSummonPerRound: {fileID: 0}

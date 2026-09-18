@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Anglea Pro
+  m_EditorClassIdentifier: 
+  cardName: Anglea Pro
+  cardType: 0
+  guaranteedInOpeningHand: 0
+  description: "Ch\u1EE7 \u0111\u1ED9ng: Khi ti\xEAu hao 3 n\u0103ng l\u01B0\u1EE3ng
+    ph\xE9p, t\u1EA1o 1 l\xE1 Thu\u1EADt Khi\u1EC3n R\u1ED1i"
+  baseHealth: 3
+  baseAttack: 3
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 3
+  artwork: {fileID: 2800000, guid: 616f1f3b8ff5d5345b34245b54599a67, type: 3}
+  artworkFocalX: 0.38
+  artworkFocalY: 0.74
+  artworkZoom: 3
+  keywords: 02000000
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities: []
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+    requiredTag: 
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  spellManaTriggers:
+  - threshold: 2
+    cardToCreate: {fileID: 11400000, guid: da1279a88af530d42bf1fc0a26fa0124, type: 2}
+    once: 0
+  damageTakenTriggers: []
+  damageDealtTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  summonUnits: []
+  tags: []
+  relatedCardsLabel: 
+  relatedCards: []

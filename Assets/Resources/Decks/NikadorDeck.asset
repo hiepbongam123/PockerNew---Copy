@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441e7df6861711a45b608d829372a429, type: 3}
+  m_Name: NikadorDeck
+  m_EditorClassIdentifier: 
+  deckName: NikadorDeck
+  cards:
+  - {fileID: 11400000, guid: 16c7dc334333b0841b3bf0e77e1adc73, type: 2}
+  - {fileID: 11400000, guid: c29d2ce76f380e142a0b6bd704096af1, type: 2}
+  - {fileID: 11400000, guid: a65e2896f3a44744d97976e82e309161, type: 2}
+  - {fileID: 11400000, guid: 0032ea15d13f8524a84f346686087534, type: 2}
+  - {fileID: 11400000, guid: 50ce5146f8ad0694bb70cd03a6b21a7d, type: 2}
+  - {fileID: 11400000, guid: dbbc8a1f7b2ca024b8de654775464656, type: 2}
+  - {fileID: 11400000, guid: dcbe949b1c76cd8408fef0fa12415a46, type: 2}
+  - {fileID: 11400000, guid: 9eda818ca80167441a1461a2785af5b7, type: 2}
+  - {fileID: 11400000, guid: 50ce5146f8ad0694bb70cd03a6b21a7d, type: 2}
+  - {fileID: 11400000, guid: 069ec8cdda638ae4d87a5c27af20b661, type: 2}
+  - {fileID: 11400000, guid: 1862cbcc96044264397c7dc95c28761b, type: 2}
+  - {fileID: 11400000, guid: 0bb83e291d7ac17459e6176ce32ea8d9, type: 2}
+  - {fileID: 11400000, guid: 7a1c6f6439293d74fa14b9e8eb8cbe33, type: 2}
+  - {fileID: 11400000, guid: 666e6e344702ec04ba1d00ad92412716, type: 2}
+  - {fileID: 11400000, guid: bf5dd8b8df1fbc74ea0e23414cfa041a, type: 2}

@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Marcus
+  m_EditorClassIdentifier: 
+  cardName: "Marcus l\xEDnh g\xE1c oai v\u1EC7"
+  cardType: 0
+  guaranteedInOpeningHand: 0
+  description: "H\u1ED7 tr\u1EE3 t\u1EA5n c\xF4ng, ban +3|0 v\xE0 H\u1EE7y Di\u1EC7t
+    cho 1 \u0111\u1ED3ng minh trong v\xF2ng n\xE0y"
+  baseHealth: 3
+  baseAttack: 1
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: 09dd3265e2b9d1043ba485632c7e1c57, type: 3}
+  artworkFocalX: 0.37
+  artworkFocalY: 0.7
+  artworkZoom: 2.5
+  keywords: 1b000000
+  supportAttackBuff: 3
+  supportHealthBuff: 1
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities: []
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+    requiredTag: 
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  spellManaTriggers: []
+  damageTakenTriggers: []
+  damageDealtTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  summonUnits: []
+  tags: []
+  relatedCardsLabel: 
+  relatedCards: []

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: SpecialRule_TrieuTap
+  m_EditorClassIdentifier: Assembly-CSharp:LoRClone.Data:EncounterModifier
+  modName: "Tri\u1EC7u T\u1EADp Kh\xF4ng Ng\u1EEBng"
+  description: 
+  enemyNexusBonus: 0
+  enemyBonusItemSlots: 0
+  enemyBonusItemMinRarity: 0
+  enemyExtraDrawStart: 0
+  enemyBonusSpellMana: 0
+  enemyStartUnits: []
+  enemyDrawPerRound: 1
+  enemyManaPerRound: 1
+  bossPowerName: 
+  bossPowerDesc: 
+  bossGrantKeyword: 0
+  bossKeyword: 12
+  bossHealNexusPerRound: 0
+  bossBoardAtkPerRound: 0
+  bossBoardHpPerRound: 0
+  bossSummonPerRound: {fileID: 0}

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Herta
+  m_EditorClassIdentifier: 
+  cardName: The Herta
+  cardType: 0
+  description: "Khi b\u1EA1n ti\xEAu hao 3 n\u0103ng l\u01B0\u1EE3ng ph\xE9p, t\u1EA1o
+    1 l\xE1 Th\xF4ng \u0110i\u1EC7p Ngo\xE0i T\u1EA7m Nh\xECn"
+  baseHealth: 2
+  baseAttack: 1
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: c1cb9e686b21a7b47ba2a23611692993, type: 3}
+  artworkFocalX: 0.25
+  artworkFocalY: 0.5
+  artworkZoom: 1
+  keywords: 03000000
+  abilities:
+  - condition: 0
+    effect: {fileID: 11400000, guid: eac5b17d6db283e43b0f55baef8da787, type: 2}
+    p1: -1
+    p2: -1
+    p3: -1
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpCondition: 
+  isGenerated: 0
+  spellManaTriggers:
+  - threshold: 2
+    cardToCreate: {fileID: 11400000, guid: d4c213f3b7ae07d4b80851c6c4550ca6, type: 2}
+    once: 0
+  damageTakenTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  relatedCardsLabel: 
+  relatedCards:
+  - {fileID: 11400000, guid: d4c213f3b7ae07d4b80851c6c4550ca6, type: 2}

@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Mage Divine
+  m_EditorClassIdentifier: 
+  cardName: "Tri\u1EBFt Gia Th\u1EA7n Ph\u1EA1t"
+  cardType: 0
+  guaranteedInOpeningHand: 0
+  description: "Khi \u0111\u1ED3ng minh b\u1ECB ti\xEAu di\u1EC7t, ban +1|0 cho t\u1EA5t
+    c\u1EA3 \u0111\u1ED3ng minh trong v\xF2ng n\xE0y\n[Th\u1EA7n Ph\u1EA1t] Khi \u0111\u1EE7
+    6 t\u1EA5n c\xF4ng, ban cho ta S\u0103n B\u1EAFn"
+  baseHealth: 1
+  baseAttack: 0
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: c1cb9e686b21a7b47ba2a23611692993, type: 3}
+  artworkFocalX: 0.57
+  artworkFocalY: 0.6
+  artworkZoom: 4
+  keywords: 
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 0
+  challengeSelfAtkBuff: 0
+  challengeSelfHpBuff: 0
+  abilities:
+  - condition: 9
+    effect: {fileID: 11400000, guid: eac5b17d6db283e43b0f55baef8da787, type: 2}
+    p1: 1
+    p2: -1
+    p3: -1
+    temporaryBuff: 1
+    grantKeyword: 0
+    grantKeywordType: 2
+    oncePerRound: 0
+    activeZone: 0
+    targetType: 0
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpConfig:
+    conditionType: 0
+    trigger: 1
+    threshold: 1
+    requiredTag: 
+  levelUpCondition: 
+  levelUpCinematic: {fileID: 0}
+  levelUpVoiceLines: []
+  isGenerated: 0
+  cardCreationTriggers: []
+  conditionalKeywords:
+  - keyword: 2
+    condition:
+      requiredAttack: 6
+      requiredHealth: 0
+      mode: 0
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 35b9e65a14b81ce4da46f352e4bfd598, type: 2}
+  summonUnits: []
+  tags:
+  - divine
+  relatedCardsLabel: "Th\u1EA7n Ph\u1EA1t"
+  relatedCards:
+  - {fileID: 11400000, guid: d8c9eab990138224084cf16c02a0ab64, type: 2}
+  - {fileID: 11400000, guid: 1f1d0a3f4c0e8794caac096696c71972, type: 2}
+  - {fileID: 11400000, guid: dbbc8a1f7b2ca024b8de654775464656, type: 2}

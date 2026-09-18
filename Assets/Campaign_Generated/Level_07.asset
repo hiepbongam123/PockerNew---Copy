@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56b5b09cc7d5349877eb4a3fb4bed4, type: 3}
+  m_Name: Level_07
+  m_EditorClassIdentifier: 
+  levelName: "T\u1EA7ng 7"
+  description: "T\u1EA7ng t\u1EF1 sinh \u2014 ch\u1EC9nh l\u1EA1i cho th\xFA v\u1ECB
+    nh\xE9."
+  bossCard: {fileID: 0}
+  enemyDeck: {fileID: 11400000, guid: 299e9b9c25ab1914486eec3499ea1892, type: 2}
+  playerHealth: 16
+  enemyHealth: 24
+  playerStartMana: 0
+  enemyStartMana: 0
+  deckPickCount: 7
+  startUnits:
+  - unit: {fileID: 11400000, guid: 50ce5146f8ad0694bb70cd03a6b21a7d, type: 2}
+    onEnemySide: 1
+    benchSlot: 0
+  rewardCards: []

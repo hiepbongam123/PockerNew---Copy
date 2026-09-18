@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a12300ddac56348b46399e17c5ebc3, type: 3}
+  m_Name: Anglea
+  m_EditorClassIdentifier: 
+  championName: Anglea
+  description: 
+  championCard: {fileID: 11400000, guid: 7dd541fd844194c49ad0d707dc43f496, type: 2}
+  starterDeck: {fileID: 11400000, guid: 8352ae58f5ae00849a0ac6ad78885cb4, type: 2}
+  signaturePower:
+    name: 
+    desc: 
+    alliesAtk: 0
+    alliesHp: 0
+    bonusMana: 0
+    bonusNexus: 0
+    costReduction: 0
+    bonusDraw: 0
+    championAtk: 0
+    championHp: 0
+    grantsKeyword: 0
+    keywordToGrant: 0

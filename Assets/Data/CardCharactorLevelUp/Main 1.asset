@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Main 1
+  m_EditorClassIdentifier: 
+  cardName: Main
+  cardType: 0
+  description: "Khi ta ti\xEAu di\u1EC7t k\u1EBB \u0111\u1ECBch, ban cho ta +1|+2"
+  baseHealth: 3
+  baseAttack: 3
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 1
+  artwork: {fileID: 2800000, guid: c7bac9f4cdf3c644dbc9631e6b37cfb4, type: 3}
+  artworkFocalX: 0.27
+  artworkFocalY: 0.22
+  artworkZoom: 1.54
+  keywords: 05000000
+  abilities:
+  - condition: 4
+    effect: {fileID: 11400000, guid: bcef73c2d5f860445a7a65d3f2f6b214, type: 2}
+    description: 
+  skills: []
+  canLevelUp: 0
+  levelUpForm: {fileID: 0}
+  levelUpCondition: 

@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f64e642399b5841bb02b9115ee3c8f, type: 3}
+  m_Name: Mydei
+  m_EditorClassIdentifier: 
+  cardName: Mydei
+  cardType: 0
+  guaranteedInOpeningHand: 0
+  description: "Th\xE1ch \u0111\u1EA5u k\u1EBB \u0111\u1ECBch s\u1EBD nh\u1EADn +2|+1
+    v\xF2ng n\xE0y.  \nKhi t\u1EA5n c\xF4ng lu\xF4n s\u1ED1ng v\u1EDBi 1 m\xE1u,
+    n\u1EBFu s\xE1t th\u01B0\u01A1ng v\u01B0\u1EE3t m\u1EE9c s\u1EBD nh\u1EADn Khi\xEAn"
+  baseHealth: 4
+  baseAttack: 2
+  spellSpeed: 2
+  requiresTarget: 0
+  targetType: 1
+  targetCount: 1
+  targetTypes: 
+  manaCost: 2
+  artwork: {fileID: 2800000, guid: fb1bfbf05db586e43a76b2fc5c73aaee, type: 3}
+  artworkFocalX: 0.45
+  artworkFocalY: 0.7
+  artworkZoom: 1.5
+  keywords: 050000000b000000
+  supportAttackBuff: 0
+  supportHealthBuff: 0
+  supportGrantKeywords: 
+  supportTemporary: 1
+  autoEquipOnSummon: {fileID: 0}
+  surviveLethalWhileAttacking: 1
+  challengeSelfAtkBuff: 2
+  challengeSelfHpBuff: 1
+  abilities: []
+  skills: []
+  canLevelUp: 1
+  levelUpForm: {fileID: 11400000, guid: f21982281f445af4f80a569491d73349, type: 2}
+  levelUpConfig:
+    conditionType: 6
+    trigger: 15
+    threshold: 4
+    requiredTag: 
+  levelUpCondition: "G\xE2y 10 s\xE1t th\u01B0\u01A1ng"
+  levelUpCinematic: {fileID: 32900000, guid: ade5a886aff706f41a1c00181d90e663, type: 3}
+  levelUpVoiceLines:
+  - {fileID: 8300000, guid: 4a93592d30f3a25429cf77be4d25259e, type: 3}
+  - {fileID: 8300000, guid: 7e5a4a270cc767643b74149fd74e512a, type: 3}
+  - {fileID: 8300000, guid: ff7efcf0678859e4bbc9aeffbc59e391, type: 3}
+  isGenerated: 0
+  cardCreationTriggers: []
+  conditionalKeywords: []
+  conditionalAbilities: []
+  countdownRounds: 3
+  spellcraftSpell: {fileID: 0}
+  unitSkillOnAttack: 0
+  unitSkillAttackOnly: 0
+  equipAttackBuff: 0
+  equipHealthBuff: 0
+  equipGrantKeywords: 
+  darkinUnit: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 5ea96468f4f6b6048940fa5b8d6af524, type: 2}
+  summonUnits: []
+  tags: []
+  relatedCardsLabel: 
+  relatedCards:
+  - {fileID: 11400000, guid: f21982281f445af4f80a569491d73349, type: 2}
