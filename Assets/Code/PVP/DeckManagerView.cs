@@ -250,6 +250,15 @@ namespace LoRClone.View
             return null;
         }
 
+        // Mở Xưởng Deck để tạo deck mới; khi đóng → refresh danh sách (thấy deck vừa tạo) rồi trả onClosed cũ.
+        void OnNewDeckClicked()
+        {
+            if (deckBuilder == null) { Msg("Thiếu DeckBuilderView."); return; }
+            var prev = deckBuilder.onClosed;
+            deckBuilder.onClosed = () => { prev?.Invoke(); RefreshList(); deckBuilder.onClosed = prev; };
+            deckBuilder.OpenNew();
+        }
+
         void OnEditClicked()
         {
             var dto = FindDeck(_selectedName);
@@ -425,6 +434,9 @@ namespace LoRClone.View
             var tbar = MakeRect("TitleBar", panel, V2(0f, 0.92f), V2(1f, 1f));
             SetImage(tbar, headerColor);
             SpawnLabel(tbar, "QUẢN LÝ DECK", titleFontSize, accentColor, TextAlignmentOptions.Center, true);
+            // ＋ BỘ BÀI MỚI → nhảy qua Xưởng Deck (deck trống). Refresh list khi đóng để thấy deck vừa tạo.
+            MakeButton(MakeRect("NewHolder", tbar, V2(0.012f, 0.14f), V2(0.20f, 0.86f)),
+                "＋ BỘ BÀI MỚI", btnBlue, Vector2.zero, Vector2.one, OnNewDeckClicked);
             MakeButton(MakeRect("CloseHolder", tbar, V2(0.955f, 0.12f), V2(0.995f, 0.88f)),
                 "X", btnRed, Vector2.zero, Vector2.one, Close);
 

@@ -37,6 +37,12 @@ namespace LoRClone.View
         [Header("Đấu Trường Anh Hùng (PvP-RPG)")]
         public ChampionArenaView championArena;
 
+        [Header("Cửa hàng trang bị (Lõi)")]
+        public ItemShopView itemShop;   // auto-add khi có campaign; nút CỬA HÀNG ở rail mở cái này
+
+        // Nhãn tiền tệ ở sảnh (Lõi / Tinh Hồn / rương) — cập nhật realtime từ ProgressStore.
+        TextMeshProUGUI _curCores, _curEssence, _curChests;
+
         [Header("Hồ sơ")]
         public string playerName = "Người chơi";
 
@@ -143,6 +149,14 @@ namespace LoRClone.View
             championArena.networkLauncher = networkLauncher;
             if (championArena.runMapView == null) championArena.runMapView = runMapView;   // nút SỬA DECK/TRANG BỊ mở hub PoC
             if (championArena.cardPrefab == null && deckBuilder != null) championArena.cardPrefab = deckBuilder.cardPrefab;
+
+            // CỬA HÀNG TRANG BỊ (Lõi) — cần campaign để đọc CardItemLibrary.
+            if (campaign != null)
+            {
+                if (itemShop == null) itemShop = GetComponent<ItemShopView>() ?? gameObject.AddComponent<ItemShopView>();
+                itemShop.campaign = campaign;
+            }
+
             if (lobby != null && lobby.cardLibrary != null) LoRClone.GameConfig.cardLibrary = lobby.cardLibrary;
 
             CollectSetupRoots();
@@ -266,8 +280,14 @@ namespace LoRClone.View
 
         void OnRail(string id)
         {
+            RefreshCurrencies();   // mỗi lần bấm rail → cập nhật tiền (VD vừa mua ở shop xong quay ra)
             if (id == "home") ShowScreen("home");
             else if (id == "play") ShowScreen("play");
+            else if (id == "coll")                       // BỘ SƯU TẬP = QUẢN LÝ DECK (xem/sửa/xóa + ＋ BỘ BÀI MỚI → Xưởng Deck)
+            { if (deckManager != null) deckManager.Open(); else Say("Thiếu DeckManagerView."); }
+            else if (id == "shop")                       // CỬA HÀNG = mua trang bị bằng Lõi
+            { if (itemShop != null) itemShop.Open(); else Say("Thiếu ItemShopView (cần gán campaign)."); }
+            else if (id == "rewd") GrantTestReward();     // PHẦN THƯỞNG = nhận test liên tục
             else Say(RailName(id) + " (chưa gắn).");
             HighlightRail(id == "play" || id == "home" ? id : _lastScreen);
         }
@@ -324,9 +344,11 @@ namespace LoRClone.View
             var avImg = av.gameObject.AddComponent<Image>(); avImg.sprite = CircleSprite(); avImg.type = Image.Type.Simple;
             avImg.color = C(0x2a, 0x30, 0x50);
             SpawnLabel(av.transform, string.IsNullOrEmpty(playerName) ? "?" : playerName.Substring(0, 1).ToUpper(), 18f, GOLD, TextAlignmentOptions.Center, true);
-            Cur(home, "◉ 15", 0.06f, 0.93f, 0.13f);
-            Cur(home, "◆ 236645", 0.135f, 0.93f, 0.235f);
-            Cur(home, "❖ 3475", 0.24f, 0.93f, 0.315f);
+            // Tiền tệ THẬT của PoC (dùng chung sang PvP): Lõi Cường Hóa + Tinh Hồn + tổng rương.
+            _curCores = CurRef(home, 0.06f, 0.93f, 0.145f);
+            _curEssence = CurRef(home, 0.15f, 0.93f, 0.235f);
+            _curChests = CurRef(home, 0.24f, 0.93f, 0.315f);
+            RefreshCurrencies();
 
             // Promo banner (Con Đường Anh Hùng)
             var promo = MakeRect("Promo", home, new Vector2(0.70f, 0.30f), new Vector2(0.985f, 0.74f));
@@ -349,7 +371,7 @@ namespace LoRClone.View
             pbtn.onClick.AddListener(OpenChampionRoad);   // nút sảnh → WORLD MAP (không nhảy thẳng vào ải dở)
 
             // Nút đáy
-            HomeBtn(home, "PHẦN THƯỞNG HÀNG NGÀY", 0.16f, 0.44f, () => Say("Phần thưởng hàng ngày (chưa gắn)."));
+            HomeBtn(home, "NHẬN THƯỞNG (TEST)", 0.16f, 0.44f, GrantTestReward);
             HomeBtn(home, "BÁU VẬT", 0.46f, 0.68f, () => Say("Báu vật (chưa gắn)."));
             HomeBtn(home, "KHO BÁU TUẦN", 0.70f, 0.98f, () => Say("Kho báu tuần (chưa gắn)."));
 
@@ -364,6 +386,38 @@ namespace LoRClone.View
             var rt = MakeRect("Cur", home, new Vector2(x0, y0), new Vector2(x1, y0 + 0.05f));
             SetRounded(rt, new Color(0.03f, 0.05f, 0.08f, 0.7f), 20).raycastTarget = false;
             SpawnLabel(rt.transform, txt, 12f, GOLDHI, TextAlignmentOptions.Center, true);
+        }
+
+        // Chip tiền tệ TRẢ VỀ nhãn để cập nhật realtime (RefreshCurrencies).
+        TextMeshProUGUI CurRef(RectTransform home, float x0, float y0, float x1)
+        {
+            var rt = MakeRect("Cur", home, new Vector2(x0, y0), new Vector2(x1, y0 + 0.05f));
+            SetRounded(rt, new Color(0.03f, 0.05f, 0.08f, 0.7f), 20).raycastTarget = false;
+            return SpawnLabel(rt.transform, "", 12f, GOLDHI, TextAlignmentOptions.Center, true);
+        }
+
+        /// <summary>Đọc ProgressStore → cập nhật chip tiền tệ ở sảnh. Gọi khi mở sảnh / sau khi nhận thưởng / mua.</summary>
+        void RefreshCurrencies()
+        {
+            if (_curCores != null) _curCores.text = $"<color=#5FCFD2>⬡</color> {ProgressStore.Cores}";        // Lõi Cường Hóa
+            if (_curEssence != null) _curEssence.text = $"<color=#C89BF5>❖</color> {ProgressStore.Essence}";   // Tinh Hồn
+            if (_curChests != null)
+            {
+                int chests = ProgressStore.ChestCount(0) + ProgressStore.ChestCount(1)
+                           + ProgressStore.ChestCount(2) + ProgressStore.ChestCount(3);
+                _curChests.text = $"<color=#F0C24E>▣</color> {chests}";                                       // tổng rương
+            }
+        }
+
+        /// <summary>THƯỞNG TEST — bấm là nhận ngay (không khoá theo ngày) để có tiền/rương thử trang bị nhanh.
+        /// Dùng đúng hệ đã có: Lõi (mua trang bị ở shop) + Tinh Hồn + rương mỗi bậc (mở ở màn rương).</summary>
+        void GrantTestReward()
+        {
+            ProgressStore.AddCores(500);
+            ProgressStore.AddEssence(500);
+            for (int t = 0; t <= 3; t++) ProgressStore.AddChest(t);   // +1 rương mỗi bậc (Thường→Huyền Thoại)
+            RefreshCurrencies();
+            Say("Đã nhận: +500 Lõi, +500 Tinh Hồn, +1 rương mỗi bậc. Bấm tiếp để nhận thêm.");
         }
         void HomeBtn(RectTransform home, string txt, float x0, float x1, UnityEngine.Events.UnityAction act)
         {

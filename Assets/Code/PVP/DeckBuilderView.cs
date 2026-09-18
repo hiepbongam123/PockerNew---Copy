@@ -86,8 +86,12 @@ namespace LoRClone.View
         // ── Runtime ───────────────────────────────────────────────
         GameObject _overlay;
         RectTransform _libContent, _deckContent, _savedContent;
-        TMP_InputField _nameInput;
+        TMP_InputField _nameInput, _libSearch;
         TextMeshProUGUI _countLabel, _msgLabel, _libHeaderLabel;
+        string _search = "";               // từ khóa tìm bài trong thư viện
+        bool _dirty;                       // deck hiện tại có thay đổi CHƯA LƯU
+        GameObject _toast; TextMeshProUGUI _toastLabel;   // banner thông báo nổi (thay msg bé)
+        GameObject _dialog;                // hộp thoại xác nhận (thoát khi chưa lưu)
 
         readonly Dictionary<CardData, int> _current = new Dictionary<CardData, int>();
         readonly Dictionary<CardData, TextMeshProUGUI> _libCountLabels = new Dictionary<CardData, TextMeshProUGUI>();
@@ -127,6 +131,13 @@ namespace LoRClone.View
             if (dto != null) LoadForEdit(dto);
         }
 
+        /// <summary>Mở Xưởng Deck với 1 deck TRỐNG mới. Gọi từ nút "BỘ BÀI MỚI" ở QUẢN LÝ DECK / Sảnh.</summary>
+        public void OpenNew()
+        {
+            Open();
+            OnNewDeck();   // xoá deck hiện tại + trống tên → bắt đầu tạo mới
+        }
+
         // ── Deck logic ────────────────────────────────────────────
         int TotalCount()
         {
@@ -141,6 +152,7 @@ namespace LoRClone.View
             _current.TryGetValue(cd, out int n);
             if (n >= maxCopies) { Msg($"Tối đa {maxCopies} bản sao mỗi lá."); return; }
             _current[cd] = n + 1;
+            _dirty = true;
             Msg("");
             RefreshDeck();
         }
@@ -150,6 +162,7 @@ namespace LoRClone.View
             if (!_current.TryGetValue(cd, out int n)) return;
             if (n <= 1) _current.Remove(cd);
             else _current[cd] = n - 1;
+            _dirty = true;
             Msg("");
             RefreshDeck();
         }
@@ -157,24 +170,37 @@ namespace LoRClone.View
         void OnNewDeck()
         {
             _current.Clear();
-            if (_nameInput != null) _nameInput.text = "";
-            Msg("Deck mới — thêm bài từ thư viện bên trái.");
+            if (_nameInput != null) _nameInput.text = DefaultDeckName();   // điền sẵn tên → khỏi quên khi lưu
+            _dirty = false;
+            Toast("Deck mới — thêm bài từ thư viện bên trái. Tên đã điền sẵn, đổi nếu muốn.");
             RefreshDeck();
+        }
+
+        // Tên mặc định KHÔNG trùng deck đã lưu: "Bộ bài mới", "Bộ bài mới 2", ...
+        string DefaultDeckName()
+        {
+            var used = new HashSet<string>();
+            foreach (var d in CustomDeckStore.LoadAll()) if (d != null) used.Add(d.name);
+            const string bn = "Bộ bài mới";
+            if (!used.Contains(bn)) return bn;
+            for (int i = 2; i < 999; i++) { string n = bn + " " + i; if (!used.Contains(n)) return n; }
+            return bn;
         }
 
         void OnSave()
         {
             string name = _nameInput != null ? _nameInput.text.Trim() : "";
-            if (string.IsNullOrEmpty(name)) { Msg("Đặt tên deck trước khi lưu."); return; }
+            if (string.IsNullOrEmpty(name)) { Toast("Đặt tên deck trước khi lưu.", true); return; }
             int total = TotalCount();
-            if (total < minCards) { Msg($"Deck cần tối thiểu {minCards} lá (đang có {total})."); return; }
+            if (total < minCards) { Toast($"Deck cần tối thiểu {minCards} lá (đang có {total}).", true); return; }
 
             var names = new List<string>();
             foreach (var kv in _current)
                 for (int i = 0; i < kv.Value; i++) names.Add(kv.Key.cardName);
 
             CustomDeckStore.SaveDeck(name, names);
-            Msg($"Đã lưu deck '{name}' ({total} lá).");
+            _dirty = false;
+            Toast($"✔ Đã lưu deck '{name}' ({total} lá).");
             RefreshSaved();
         }
 
@@ -193,7 +219,8 @@ namespace LoRClone.View
                 else missing++;
             }
             if (_nameInput != null) _nameInput.text = dto.name;
-            Msg(missing > 0 ? $"Đã nạp '{dto.name}' — thiếu {missing} lá không còn tồn tại." : $"Đang sửa deck '{dto.name}'.");
+            _dirty = false;
+            Toast(missing > 0 ? $"Đã nạp '{dto.name}' — thiếu {missing} lá không còn tồn tại." : $"Đang sửa deck '{dto.name}'.", missing > 0);
             RefreshDeck();
         }
 
@@ -237,13 +264,25 @@ namespace LoRClone.View
                 return;
             }
 
+            string q = (_search ?? "").Trim();
+            int shown = 0;
             foreach (var cd in _libraryCards)
             {
                 var card = cd;
+                // Lọc theo tìm kiếm (tên bài, không phân biệt hoa/thường).
+                if (q.Length > 0 && (card.cardName == null
+                    || card.cardName.IndexOf(q, System.StringComparison.OrdinalIgnoreCase) < 0)) continue;
                 bool locked = _lockedRewards.TryGetValue(card, out int rewardLevel);
                 if (cardPrefab != null) MakeCardCell(card, locked, rewardLevel);
                 else MakeTextRow(card, locked, rewardLevel);
+                shown++;
             }
+            if (shown == 0)
+                SpawnPlaceholder(_libContent, $"Không có bài khớp \"{q}\".");
+            if (_libHeaderLabel != null)
+                _libHeaderLabel.text = q.Length > 0
+                    ? $"THƯ VIỆN BÀI ({shown}/{_libraryCards.Count} lá)"
+                    : $"THƯ VIỆN BÀI ({_libraryCards.Count} lá)";
             SyncLibCounts();
             LayoutRebuilder.ForceRebuildLayoutImmediate(_libContent);
         }
@@ -547,20 +586,15 @@ namespace LoRClone.View
             foreach (var dto in all)
             {
                 var d = dto;
-                var row = MakeRow(_savedContent, savedRowHeight, null);
+                // CLICK cả hàng = nạp deck để sửa (bỏ nút "Sửa" thừa). Xóa deck làm ở màn QUẢN LÝ DECK.
+                var row = MakeRow(_savedContent, savedRowHeight, () => LoadForEdit(d));
 
                 SpawnLabel(row, d.name, rowFontSize * 0.94f, Color.white,
-                    TextAlignmentOptions.MidlineLeft, true, V2(0.03f, 0f), V2(0.50f, 1f));
+                    TextAlignmentOptions.MidlineLeft, true, V2(0.03f, 0f), V2(0.70f, 1f));
                 SpawnLabel(row, $"{d.cardNames.Count} lá", rowFontSize * 0.78f, textDimColor,
-                    TextAlignmentOptions.MidlineLeft, false, V2(0.50f, 0f), V2(0.64f, 1f));
-
-                MakeButton(row, "Sửa", btnBlue, V2(0.66f, 0.14f), V2(0.81f, 0.86f), () => LoadForEdit(d));
-                MakeButton(row, "Xóa", btnRed, V2(0.83f, 0.14f), V2(0.98f, 0.86f), () =>
-                {
-                    CustomDeckStore.DeleteDeck(d.name);
-                    Msg($"Đã xóa deck '{d.name}'.");
-                    RefreshSaved();
-                });
+                    TextAlignmentOptions.MidlineRight, false, V2(0.60f, 0f), V2(0.82f, 1f));
+                SpawnLabel(row, "click để sửa", rowFontSize * 0.7f, accentColor,
+                    TextAlignmentOptions.MidlineRight, false, V2(0.82f, 0f), V2(0.98f, 1f));
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(_savedContent);
         }
@@ -586,8 +620,9 @@ namespace LoRClone.View
             var tbar = MakeRect("TitleBar", panel, V2(0f, 0.92f), V2(1f, 1f));
             SetImage(tbar, headerColor);
             SpawnLabel(tbar, "XƯỞNG DECK", titleFontSize, accentColor, TextAlignmentOptions.Center, true);
-            MakeButton(MakeRect("CloseHolder", tbar, V2(0.955f, 0.12f), V2(0.995f, 0.88f)),
-                "X", btnRed, Vector2.zero, Vector2.one, Close);
+            // Nút thoát RÕ RÀNG (chữ, không phải "X" bé) — có cảnh báo nếu deck chưa lưu.
+            MakeButton(MakeRect("CloseHolder", tbar, V2(0.86f, 0.16f), V2(0.992f, 0.84f)),
+                "← QUAY LẠI", btnRed, Vector2.zero, Vector2.one, OnExit);
 
             // ── Trái: thư viện ──
             var lib = MakeRect("LibraryArea", panel, V2(0.008f, 0.008f), V2(0.52f, 0.912f));
@@ -598,7 +633,10 @@ namespace LoRClone.View
                 TextAlignmentOptions.MidlineLeft, true, V2(0.02f, 0f), V2(0.6f, 1f));
             SpawnLabel(libHdr, "click để thêm", headerFontSize * 0.8f, textDimColor,
                 TextAlignmentOptions.MidlineRight, false, V2(0.6f, 0f), V2(0.98f, 1f));
-            _libContent = BuildScrollArea("LibScroll", lib, V2(0f, 0f), V2(1f, 0.92f),
+            // Thanh TÌM KIẾM bài (lọc theo tên) — ngay dưới header thư viện.
+            _libSearch = MakeInput(lib, V2(0.02f, 0.862f), V2(0.98f, 0.925f), "🔍 Tìm bài theo tên...");
+            _libSearch.onValueChanged.AddListener(s => { _search = s; RefreshLibrary(); });
+            _libContent = BuildScrollArea("LibScroll", lib, V2(0f, 0f), V2(1f, 0.855f),
                 grid: cardPrefab != null);
 
             // ── Phải ──
@@ -635,7 +673,69 @@ namespace LoRClone.View
             SetImage(savedArea, areaColor);
             _savedContent = BuildScrollArea("SavedScroll", savedArea, Vector2.zero, Vector2.one);
 
+            BuildToast(panel);
+
             _overlay.SetActive(false);
+        }
+
+        // ── Banner thông báo NỔI (thay cho dòng msg bé) ───────────
+        void BuildToast(RectTransform panel)
+        {
+            var t = MakeRect("Toast", panel, V2(0.28f, 0.90f), V2(0.72f, 0.965f));
+            _toast = t.gameObject;
+            var img = SetImage(t, new Color(0.12f, 0.32f, 0.18f, 0.96f));
+            img.raycastTarget = false;
+            _toastLabel = SpawnLabel(t, "", headerFontSize * 1.0f, Color.white,
+                TextAlignmentOptions.Center, true, V2(0.03f, 0f), V2(0.97f, 1f));
+            _toast.SetActive(false);
+        }
+
+        /// <summary>Hiện banner thông báo ~2.4s (xanh = OK, đỏ = lỗi). Vẫn set msg nhỏ để tra cứu.</summary>
+        void Toast(string msg, bool error = false)
+        {
+            Msg(msg);
+            if (_toast == null) { return; }
+            if (_toastLabel != null) _toastLabel.text = msg;
+            var img = _toast.GetComponent<Image>();
+            if (img != null) img.color = error ? new Color(0.52f, 0.14f, 0.14f, 0.97f) : new Color(0.12f, 0.34f, 0.20f, 0.97f);
+            _toast.transform.SetAsLastSibling();
+            _toast.SetActive(true);
+            CancelInvoke(nameof(HideToast));
+            Invoke(nameof(HideToast), 2.4f);
+        }
+        void HideToast() { if (_toast != null) _toast.SetActive(false); }
+
+        // ── Thoát có cảnh báo nếu deck CHƯA LƯU ───────────────────
+        void OnExit()
+        {
+            if (_dirty && TotalCount() > 0)
+                ShowConfirm("Deck chưa lưu. Thoát mà không lưu?", "THOÁT KHÔNG LƯU", () => { _dirty = false; Close(); });
+            else
+                Close();
+        }
+
+        /// <summary>Hộp thoại xác nhận 2 nút (OK màu đỏ / Ở LẠI). Dựng mới mỗi lần, bấm nền = hủy.</summary>
+        void ShowConfirm(string msg, string okLabel, System.Action onOk)
+        {
+            if (_dialog != null) Destroy(_dialog);
+            var dim = MakeRect("Dialog", GetComponent<RectTransform>(), Vector2.zero, Vector2.one);
+            _dialog = dim.gameObject;
+            var dcv = _dialog.AddComponent<Canvas>();
+            dcv.overrideSorting = true; dcv.sortingOrder = 650;   // trên overlay Xưởng Deck (600)
+            _dialog.AddComponent<GraphicRaycaster>();
+            var dimImg = SetImage(dim, new Color(0f, 0f, 0f, 0.66f));
+            var dimBtn = _dialog.AddComponent<Button>(); dimBtn.targetGraphic = dimImg;
+            dimBtn.onClick.AddListener(() => { Destroy(_dialog); _dialog = null; });
+
+            var box = MakeRect("Box", dim, V2(0.34f, 0.40f), V2(0.66f, 0.60f));
+            SetImage(box, new Color(0.10f, 0.13f, 0.18f, 1f));
+            SpawnLabel(box, msg, headerFontSize * 1.05f, Color.white,
+                TextAlignmentOptions.Center, true, V2(0.06f, 0.45f), V2(0.94f, 0.92f));
+
+            MakeButton(MakeRect("Ok", box, V2(0.06f, 0.10f), V2(0.49f, 0.38f)),
+                okLabel, btnRed, Vector2.zero, Vector2.one, () => { Destroy(_dialog); _dialog = null; onOk?.Invoke(); });
+            MakeButton(MakeRect("Cancel", box, V2(0.51f, 0.10f), V2(0.94f, 0.38f)),
+                "Ở LẠI", btnBlue, Vector2.zero, Vector2.one, () => { Destroy(_dialog); _dialog = null; });
         }
 
         // ── Row helpers ───────────────────────────────────────────
