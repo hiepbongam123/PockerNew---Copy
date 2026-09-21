@@ -6282,6 +6282,7 @@ MonoBehaviour:
   - {fileID: 172337511}
   networkLauncher: {fileID: 0}
   championArena: {fileID: 0}
+  itemShop: {fileID: 0}
   playerName: "Ng\u01B0\u1EDDi ch\u01A1i"
   homeBackgroundSprite: {fileID: 1347145032, guid: 3d5bfe924f20ad348bb736dafc221ed3, type: 3}
   homeBackgroundTexture: {fileID: 0}
@@ -6769,6 +6770,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969429627}
   m_CullTransparentMesh: 1
+--- !u!1 &1974532316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1974532318}
+  - component: {fileID: 1974532317}
+  m_Layer: 0
+  m_Name: Account
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1974532317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974532316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a049e5524d2759d42b2ac07d15d0631e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleId: 524FF
+--- !u!4 &1974532318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974532316}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1237.2653, y: 350.21005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1993363221
 GameObject:
   m_ObjectHideFlags: 0
@@ -7196,3 +7242,4 @@ SceneRoots:
   - {fileID: 1616459279}
   - {fileID: 1364334014}
   - {fileID: 2081764553}
+  - {fileID: 1974532318}

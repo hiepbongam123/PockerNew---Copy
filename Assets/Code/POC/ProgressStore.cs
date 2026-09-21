@@ -39,6 +39,12 @@ namespace LoRClone.Data
         static ProgressDTO _cache;
         // ★ CHỐT AN TOÀN: lần Load gần nhất có ĐỌC ĐƯỢC không. Đọc LỖI → cấm Save ghi đè (tránh mất save thật).
         static bool _loadOk;
+
+        /// <summary>Bắn MỖI khi tiến độ thay đổi (Save) → lớp cloud (PlayFabAccount) nghe để đẩy lên server.</summary>
+        public static event System.Action OnChanged;
+
+        /// <summary>Bỏ cache → lần đọc sau nạp lại từ file. Gọi SAU khi cloud ghi đè file save (PullFromCloud).</summary>
+        public static void Reload() { _cache = null; _loadOk = false; }
         static string FilePath => Path.Combine(Application.persistentDataPath, "campaign_progress.json");
         static string BakPath => FilePath + ".bak";
         static string TmpPath => FilePath + ".tmp";
@@ -103,6 +109,7 @@ namespace LoRClone.Data
                 File.Move(TmpPath, FilePath);                                // 3) đổi tên nguyên tử → không để file dở
             }
             catch (Exception e) { Debug.LogError($"[ProgressStore] Lỗi ghi tiến độ: {e.Message}"); }
+            try { OnChanged?.Invoke(); } catch (Exception e) { Debug.LogWarning($"[ProgressStore] OnChanged: {e.Message}"); }
         }
 
         public static int HighestCompleted => Load().highestCompleted;
