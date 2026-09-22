@@ -86,6 +86,17 @@ Card, deck, skill, champion, relic, power... đều là ScriptableObject asset t
 - `Library/`, `Temp/`, `obj/`, `Logs/`, `*.csproj`, `*.sln` — auto-generate, đã ignore (xem `.gitignore`). Không commit.
 - File `.meta` của Unity — **luôn giữ và commit kèm** asset tương ứng, đừng xóa lẻ.
 
+## Quy trình làm việc (BẮT BUỘC)
+
+Áp dụng cho MỌI thay đổi code trong repo này:
+
+1. **Commit git sau mỗi thay đổi.** Mỗi lần chỉnh sửa hoàn chỉnh một việc → tạo ngay 1 commit tương ứng, message rõ ràng (nêu *đã làm gì*), để về sau theo dõi và khôi phục được. Không gộp nhiều việc không liên quan vào 1 commit; không để thay đổi trôi nổi mà chưa commit.
+2. **Viết / cập nhật test cho mỗi thay đổi.** Thêm hoặc sửa logic (luật game, skill, model, controller) → viết mới hoặc cập nhật test liên quan trong `Assets/Code/Editor` (Unity Test Framework, xem `PoCTests_1.cs` làm mẫu). Ưu tiên test cho lớp Model/Controller/Skills vì là POCO, test được không cần scene.
+3. **Nghiệm thu trước khi giao.** Trước khi báo "xong" cho người dùng, phải chạy **Unity Test Runner** (EditMode + PlayMode) và đảm bảo **tất cả test PASS** cùng các tiêu chí nghiệm thu đã thống nhất. Nếu môi trường hiện tại không mở được Unity để chạy test, phải nói rõ điều đó và liệt kê chính xác test cần chạy — không được ngầm coi là đã đạt.
+
+> Lưu ý: test Unity chạy qua Unity Test Runner trong Editor (hoặc `Unity -batchmode -runTests`), không chạy được bằng shell thuần. Agent phải nêu rõ khi chưa thể tự chạy.
+
 ## Git
 
-- Repo: `https://github.com/hiepbongam123/PockerNew---Copy.git`, branch chính `main`.
+- Repo: `https://github.com/hiepbongam123/PockerNew---Copy.git`.
+- Nhánh phát triển hiện tại: **`hsrxlor`** (nhánh reskin HSR Amphoreus). `main` là nhánh gốc LoR clone.
