@@ -98,4 +98,5 @@ Card, deck, skill, champion, relic, power... đều là ScriptableObject asset t
 
 ## Git
 
-- Repo: `https://github.com/hiepbongam123/PockerNew---Copy.git`, branch chính `main`.
+- Repo: `https://github.com/hiepbongam123/PockerNew---Copy.git`.
+- Nhánh phát triển hiện tại: **`hsrxlor`** (nhánh reskin HSR Amphoreus). `main` là nhánh gốc LoR clone.
