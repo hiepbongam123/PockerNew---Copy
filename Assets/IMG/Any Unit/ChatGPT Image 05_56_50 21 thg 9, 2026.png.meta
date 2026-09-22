@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bdf65b6fafd9b9246b9b094dd9657483
+guid: 35bbbd6444f74a243abb92eb7b55af97
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1 (6)_0
+      name: ChatGPT Image 05_56_50 21 thg 9, 2026_0
       rect:
         serializedVersion: 2
-        x: 648
-        y: 507
-        width: 360
-        height: 360
+        x: 162
+        y: 384
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a4dfec577cc7d04fa5f640fdb0127d0
-      internalID: -45742191
+      spriteID: d08ecfcdaf7591f40928ddbcd0344ca1
+      internalID: -1858468362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1 (6)_1
+      name: ChatGPT Image 05_56_50 21 thg 9, 2026_1
       rect:
         serializedVersion: 2
-        x: 1117
-        y: 218
-        width: 360
-        height: 360
+        x: 583
+        y: 515
+        width: 400
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,8 +173,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a84957d0fc4bb8479b232f446f424cc
-      internalID: 1793875016
+      spriteID: 5a1ad6952dda936489ebe843eae07aa0
+      internalID: -1630086803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChatGPT Image 05_56_50 21 thg 9, 2026_2
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 470
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b203ccce5be4e024097c029f127efbc0
+      internalID: -1743149829
       vertices: []
       indices: 
       edges: []
@@ -183,7 +205,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ad1ec7225d93efd4a9271618f6377461
+    spriteID: b11927f063ebfc54babd19458456ce5f
     internalID: 0
     vertices: []
     indices: 
@@ -193,8 +215,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      1 (6)_0: -45742191
-      1 (6)_1: 1793875016
+      ChatGPT Image 05_56_50 21 thg 9, 2026_0: -1858468362
+      ChatGPT Image 05_56_50 21 thg 9, 2026_1: -1630086803
+      ChatGPT Image 05_56_50 21 thg 9, 2026_2: -1743149829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

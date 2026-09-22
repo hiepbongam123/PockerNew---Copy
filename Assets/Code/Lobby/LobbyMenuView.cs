@@ -40,11 +40,21 @@ namespace LoRClone.View
         [Header("Cửa hàng trang bị (Lõi)")]
         public ItemShopView itemShop;   // auto-add khi có campaign; nút CỬA HÀNG ở rail mở cái này
 
-        // Nhãn tiền tệ ở sảnh (Lõi / Tinh Hồn / rương) — cập nhật realtime từ ProgressStore.
-        TextMeshProUGUI _curCores, _curEssence, _curChests;
+        [Header("Bảng xếp hạng (UGS)")]
+        public LeaderboardView leaderboardView;   // auto-add; rail "BẢNG XẾP HẠNG" + mode "rank" mở cái này
+
+        [Header("Hồ sơ / Tài khoản (UGS)")]
+        public AccountView accountView;   // auto-add; bấm AVATAR mở — đặt tên, rank hiện tại, lịch sử đấu (sau)
+
+        // Nhãn tiền tệ ở sảnh (Lõi / Tinh Hồn / rương / rank) — cập nhật realtime từ ProgressStore.
+        TextMeshProUGUI _curCores, _curEssence, _curChests, _curRank;
 
         [Header("Hồ sơ")]
         public string playerName = "Người chơi";
+
+        [Header("Avatar mặc định (kéo các Sprite vào đây)")]
+        [Tooltip("Bộ ảnh đại diện mặc định. Người chơi chọn 1 ở Hồ Sơ; hiện ở sảnh/panel/bảng xếp hạng.")]
+        public Sprite[] avatars;
 
         [Header("Ảnh MÀN HÌNH CHÍNH (kéo Sprite HOẶC Texture vào — để trống = nền tạm)")]
         [Tooltip("Ảnh nền splash. Ưu tiên Sprite; nếu để trống thì dùng Texture.")]
@@ -80,6 +90,13 @@ namespace LoRClone.View
         GameObject _menu, _home, _play;
         readonly List<GameObject> _setupRoots = new List<GameObject>();
         string _mode = "play";
+
+        // Chế độ PvP: false = THƯỜNG (không tính điểm), true = XẾP HẠNG (tính MMR). Lưu qua PlayerPrefs.
+        bool _rankedMode;
+        const string RankedKey = "pvp_ranked";
+        Image _segNormal, _segRanked;
+        TextMeshProUGUI _segNormalLbl, _segRankedLbl, _modeHdrLbl;
+        Image _avatarChip, _avatarDetail;   // avatar ở sảnh + ở panel chi tiết
         DeckData _picked; string _pickedEditName; string _selectedDeckName;
         RectTransform _gridContent;
         GameObject _detailLayer;        // lớp mờ + panel
@@ -103,6 +120,10 @@ namespace LoRClone.View
         {
             if (!Application.isPlaying) return;
             if (lobby == null) lobby = GetComponent<LobbyManager>();
+
+            _rankedMode = PlayerPrefs.GetInt(RankedKey, 0) == 1;   // nhớ chế độ PvP đã chọn
+            LoRClone.Data.AvatarStore.Choices = avatars;           // đăng ký bộ avatar mặc định
+            LoRClone.Data.AvatarStore.OnChanged += UpdateAvatars;  // đổi avatar ở Hồ Sơ → cập nhật sảnh
 
             if (deckBuilder == null)
                 deckBuilder = GetComponent<DeckBuilderView>() ?? gameObject.AddComponent<DeckBuilderView>();
@@ -157,11 +178,20 @@ namespace LoRClone.View
                 itemShop.campaign = campaign;
             }
 
+            // BẢNG XẾP HẠNG (UGS Leaderboards) — panel tự dựng UI; chỉ cần UgsAccount đã login.
+            if (leaderboardView == null)
+                leaderboardView = GetComponent<LeaderboardView>() ?? gameObject.AddComponent<LeaderboardView>();
+
+            // HỒ SƠ — mở từ avatar; đặt tên + rank hiện tại.
+            if (accountView == null)
+                accountView = GetComponent<AccountView>() ?? gameObject.AddComponent<AccountView>();
+
             if (lobby != null && lobby.cardLibrary != null) LoRClone.GameConfig.cardLibrary = lobby.cardLibrary;
 
             CollectSetupRoots();
             BuildMenu();
             ShowMenu(true);
+            ResetNetViewFlags();   // ★ về tới sảnh → luôn xoá cờ lật-view của PvP-client (rào PoC/PvE)
 
             if (Data.CampaignContext.reopenCampaign)
             { Data.CampaignContext.reopenCampaign = false; OpenLeoThap(); }
@@ -184,9 +214,20 @@ namespace LoRClone.View
             if (networkLauncher != null) networkLauncher.SetVisible(false);
         }
 
+        // ★ RÀO PvP → PoC/PvE: NetLocalIsPlayer là STATIC lật view; PvP-CLIENT set nó false.
+        //   Vào chế độ không-network mà không reset → view lật → lá enemy hiện ở sân/tay mình.
+        //   PendingNetworkMode cũng reset để Start() của game scene KHÔNG hiểu nhầm là trận mạng.
+        //   (PvP thường sẽ được NetworkLauncher set lại 2 cờ này đúng trước khi vào trận → an toàn.)
+        static void ResetNetViewFlags()
+        {
+            LoRClone.Controller.GameController.NetLocalIsPlayer = true;
+            LoRClone.Controller.GameController.PendingNetworkMode = false;
+        }
+
         // VỀ SAU TRẬN (reopenCampaign): tiếp tục NODE MAP của ải đang chơi — GIỮ nguyên vòng lặp PoC.
         void OpenLeoThap()
         {
+            ResetNetViewFlags();                   // ★ rào: PvP-client → PoC không bị lật view
             LoRClone.Data.GauntletEntry.Leave();   // ★ ISOLATION: PoC → xóa sạch state gauntlet
             if (runMapView != null) runMapView.Open(); else if (campaignView != null) campaignView.Open();
         }
@@ -194,6 +235,7 @@ namespace LoRClone.View
         // TỪ SẢNH (bấm nút Con Đường Anh Hùng): LUÔN vào WORLD MAP (chọn khu vực) — KHÔNG auto nhảy vào ải dở.
         void OpenChampionRoad()
         {
+            ResetNetViewFlags();                   // ★ rào
             LoRClone.Data.GauntletEntry.Leave();
             if (runMapView != null) runMapView.OpenFromLobby(); else if (campaignView != null) campaignView.Open();
         }
@@ -239,7 +281,10 @@ namespace LoRClone.View
             SetVGrad(edge, AMBERHI, AMBERDK).raycastTarget = false;
 
             var logo = MakeRect("Logo", rail, new Vector2(0.24f, 0.905f), new Vector2(0.76f, 0.975f));
-            SetRoundedGrad(logo, AMBERHI, AMBERDK, 12);
+            var logoImg = SetRoundedGrad(logo, AMBERHI, AMBERDK, 12);
+            var logoBtn = logo.gameObject.AddComponent<Button>(); logoBtn.targetGraphic = logoImg;   // logo H → HỒ SƠ
+            ApplyBtnColors(logoBtn, Color.white, new Color(1, 1, 1, 0.9f));
+            logoBtn.onClick.AddListener(OpenAccount);
             SpawnLabel(logo.transform, "H", 28f, C(0x20, 0x16, 0x0a), TextAlignmentOptions.Center, true);
 
             _railBtns.Clear();
@@ -248,7 +293,7 @@ namespace LoRClone.View
             RailItem(rail, "play", "CHƠI NGAY", ref y);
             RailItem(rail, "coll", "BỘ SƯU TẬP", ref y);
             RailItem(rail, "rewd", "PHẦN THƯỞNG", ref y);
-            RailItem(rail, "pass", "BATTLE PASS", ref y);
+            RailItem(rail, "pass", "BẢNG XẾP HẠNG", ref y);
             // Cửa hàng đáy
             RailItemAt(rail, "shop", "CỬA HÀNG", 0.02f, 0.115f);
         }
@@ -288,10 +333,28 @@ namespace LoRClone.View
             else if (id == "shop")                       // CỬA HÀNG = mua trang bị bằng Lõi
             { if (itemShop != null) itemShop.Open(); else Say("Thiếu ItemShopView (cần gán campaign)."); }
             else if (id == "rewd") GrantTestReward();     // PHẦN THƯỞNG = nhận test liên tục
+            else if (id == "pass") OpenLeaderboard();     // BẢNG XẾP HẠNG = UGS Leaderboards
             else Say(RailName(id) + " (chưa gắn).");
             HighlightRail(id == "play" || id == "home" ? id : _lastScreen);
         }
-        string RailName(string id) => id == "coll" ? "Bộ sưu tập" : id == "rewd" ? "Phần thưởng" : id == "pass" ? "Battle Pass" : id == "shop" ? "Cửa hàng" : id;
+        string RailName(string id) => id == "coll" ? "Bộ sưu tập" : id == "rewd" ? "Phần thưởng" : id == "pass" ? "Bảng xếp hạng" : id == "shop" ? "Cửa hàng" : id;
+
+        void OpenLeaderboard()
+        { if (leaderboardView != null) leaderboardView.Open(); else Say("Thiếu LeaderboardView."); }
+
+        void OpenAccount()
+        { if (accountView != null) accountView.Open(); else Say("Thiếu AccountView."); }
+
+        // Đổi avatar ở Hồ Sơ → cập nhật ngay avatar ở sảnh + panel chi tiết.
+        void UpdateAvatars()
+        {
+            var s = LoRClone.Data.AvatarStore.Selected;
+            if (s == null) return;
+            if (_avatarChip != null) { _avatarChip.sprite = s; _avatarChip.color = Color.white; }
+            if (_avatarDetail != null) { _avatarDetail.sprite = s; _avatarDetail.color = Color.white; }
+        }
+
+        void OnDestroy() { LoRClone.Data.AvatarStore.OnChanged -= UpdateAvatars; }
 
         string _lastScreen = "home";
         void ShowScreen(string s)
@@ -341,13 +404,20 @@ namespace LoRClone.View
 
             // Top bar: hồ sơ + tiền tệ
             var av = MakeRect("Av", home, new Vector2(0.01f, 0.90f), new Vector2(0.045f, 0.985f));
-            var avImg = av.gameObject.AddComponent<Image>(); avImg.sprite = CircleSprite(); avImg.type = Image.Type.Simple;
-            avImg.color = C(0x2a, 0x30, 0x50);
-            SpawnLabel(av.transform, string.IsNullOrEmpty(playerName) ? "?" : playerName.Substring(0, 1).ToUpper(), 18f, GOLD, TextAlignmentOptions.Center, true);
+            var avImg = av.gameObject.AddComponent<Image>(); avImg.type = Image.Type.Simple;
+            _avatarChip = avImg;
+            var avSel = LoRClone.Data.AvatarStore.Selected;
+            if (avSel != null) { avImg.sprite = avSel; avImg.color = Color.white; }
+            else
+            {
+                avImg.sprite = CircleSprite(); avImg.color = C(0x2a, 0x30, 0x50);
+                SpawnLabel(av.transform, string.IsNullOrEmpty(playerName) ? "?" : playerName.Substring(0, 1).ToUpper(), 18f, GOLD, TextAlignmentOptions.Center, true);
+            }
             // Tiền tệ THẬT của PoC (dùng chung sang PvP): Lõi Cường Hóa + Tinh Hồn + tổng rương.
-            _curCores = CurRef(home, 0.06f, 0.93f, 0.145f);
-            _curEssence = CurRef(home, 0.15f, 0.93f, 0.235f);
-            _curChests = CurRef(home, 0.24f, 0.93f, 0.315f);
+            _curCores = CurRef(home, 0.055f, 0.93f, 0.155f);
+            _curEssence = CurRef(home, 0.16f, 0.93f, 0.260f);
+            _curChests = CurRef(home, 0.265f, 0.93f, 0.365f);
+            _curRank = CurRef(home, 0.37f, 0.93f, 0.560f);
             RefreshCurrencies();
 
             // Promo banner (Con Đường Anh Hùng)
@@ -399,14 +469,18 @@ namespace LoRClone.View
         /// <summary>Đọc ProgressStore → cập nhật chip tiền tệ ở sảnh. Gọi khi mở sảnh / sau khi nhận thưởng / mua.</summary>
         void RefreshCurrencies()
         {
-            if (_curCores != null) _curCores.text = $"<color=#5FCFD2>⬡</color> {ProgressStore.Cores}";        // Lõi Cường Hóa
-            if (_curEssence != null) _curEssence.text = $"<color=#C89BF5>❖</color> {ProgressStore.Essence}";   // Tinh Hồn
+            // Dùng CHỮ thay ký tự đặc biệt (⬡❖▣⚔) — font TMP mặc định thiếu glyph → hiện ô vuông tofu.
+            if (_curCores != null) _curCores.text = $"<color=#5FCFD2>Lõi</color> {ProgressStore.Cores}";        // Lõi Cường Hóa
+            if (_curEssence != null) _curEssence.text = $"<color=#C89BF5>Hồn</color> {ProgressStore.Essence}";   // Tinh Hồn
             if (_curChests != null)
             {
                 int chests = ProgressStore.ChestCount(0) + ProgressStore.ChestCount(1)
                            + ProgressStore.ChestCount(2) + ProgressStore.ChestCount(3);
-                _curChests.text = $"<color=#F0C24E>▣</color> {chests}";                                       // tổng rương
+                _curChests.text = $"<color=#F0C24E>Rương</color> {chests}";                                       // tổng rương
             }
+            if (_curRank != null)
+                _curRank.text = $"<color=#7FD3FF>MMR</color> {ProgressStore.RankMmr}  " +
+                                $"<size=78%><color=#9AA7B8>{ProgressStore.RankWins}T/{ProgressStore.RankLosses}B</color></size>";  // rank MMR + thắng/thua
         }
 
         /// <summary>THƯỞNG TEST — bấm là nhận ngay (không khoá theo ngày) để có tiền/rương thử trang bị nhanh.
@@ -440,6 +514,7 @@ namespace LoRClone.View
             BuildMainGrid(play);
             BuildDetail(play);
             BuildPopup(root);
+            RefreshRankedToggle();   // set text ô CHẾ ĐỘ sau khi _modeHdrLbl đã tạo
         }
 
         void BuildModeColumn(RectTransform play)
@@ -474,7 +549,7 @@ namespace LoRClone.View
             if (mode == "hero") { OpenLeoThap(); return; }
             if (mode == "gauntlet") { OpenArena(); return; }   // ★ PvP-RPG: view riêng (ChampionArenaView)
             if (mode == "chal") { Say("Thử thách (chưa gắn)."); }
-            if (mode == "rank") { Say("Bảng xếp hạng (chưa gắn)."); }
+            if (mode == "rank") { OpenLeaderboard(); return; }
             SelectContext(mode);
         }
         void SelectContext(string mode)
@@ -491,23 +566,46 @@ namespace LoRClone.View
         void BuildMainGrid(RectTransform play)
         {
             var main = MakeRect("Main", play, new Vector2(0.30f, 0f), new Vector2(1f, 1f));
-            SpawnLabel(MakeRect("H", main, new Vector2(0.02f, 0.925f), new Vector2(0.6f, 0.985f)),
+            SpawnLabel(MakeRect("H", main, new Vector2(0.02f, 0.925f), new Vector2(0.5f, 0.985f)),
                 "CHỌN BỘ BÀI CỦA BẠN", 24f, INK, TextAlignmentOptions.Left, true);
-            MakeSeg(main, "TIÊU CHUẨN", false, new Vector2(0.62f, 0.94f), new Vector2(0.78f, 0.982f));
-            MakeSeg(main, "VÔ HẠN", true, new Vector2(0.79f, 0.94f), new Vector2(0.94f, 0.982f));
+            // ★ Toggle CHẾ ĐỘ PvP (lưu lại) — bấm CHƠI NGAY sẽ vào thẳng theo chế độ này, KHÔNG hỏi lại.
+            SpawnLabel(MakeRect("Mt", main, new Vector2(0.50f, 0.94f), new Vector2(0.615f, 0.982f)),
+                "CHẾ ĐỘ:", 12f, DIM, TextAlignmentOptions.Right, true);
+            _segNormal = SegBtn(main, "THƯỜNG", new Vector2(0.625f, 0.938f), new Vector2(0.755f, 0.984f),
+                () => SetRanked(false), out _segNormalLbl);
+            _segRanked = SegBtn(main, "XẾP HẠNG", new Vector2(0.76f, 0.938f), new Vector2(0.94f, 0.984f),
+                () => SetRanked(true), out _segRankedLbl);
+            RefreshRankedToggle();
             var rule = MakeRect("Rule", main, new Vector2(0.02f, 0.912f), new Vector2(0.98f, 0.918f));
             SetVGrad(rule, AMBER, new Color(AMBER.r, AMBER.g, AMBER.b, 0f)).raycastTarget = false;
             _gridContent = BuildGridScroll("Grid", main, new Vector2(0.02f, 0.02f), new Vector2(0.98f, 0.90f));
             PopulateGrid();
         }
-        void MakeSeg(RectTransform parent, string text, bool on, Vector2 min, Vector2 max)
+        // ── Toggle THƯỜNG / XẾP HẠNG ──
+        Image SegBtn(RectTransform parent, string label, Vector2 min, Vector2 max,
+            UnityEngine.Events.UnityAction act, out TextMeshProUGUI lbl)
         {
-            var rt = MakeRect("Seg", parent, min, max);
-            var dot = MakeRect("Dot", rt, new Vector2(0f, 0.28f), new Vector2(0.15f, 0.72f));
-            var di = dot.gameObject.AddComponent<Image>(); di.sprite = CircleSprite(); di.type = Image.Type.Simple;
-            di.color = on ? GOLD : C(0x42, 0x36, 0x24); di.raycastTarget = false;
-            SpawnLabel(MakeRect("T", rt, new Vector2(0.17f, 0f), new Vector2(1f, 1f)),
-                text, 12f, on ? INK : FAINT, TextAlignmentOptions.Left, true);
+            var rt = MakeRect("Seg_" + label, parent, min, max);
+            var img = SetRounded(rt, C(0x22, 0x16, 0x0f), 8);
+            var btn = rt.gameObject.AddComponent<Button>(); btn.targetGraphic = img;
+            ApplyBtnColors(btn, Color.white, new Color(1, 1, 1, 0.9f));
+            lbl = SpawnLabel(rt.transform, label, 12f, DIM, TextAlignmentOptions.Center, true);
+            btn.onClick.AddListener(act);
+            return img;
+        }
+        void SetRanked(bool on)
+        {
+            _rankedMode = on;
+            PlayerPrefs.SetInt(RankedKey, on ? 1 : 0); PlayerPrefs.Save();
+            RefreshRankedToggle();
+        }
+        void RefreshRankedToggle()
+        {
+            if (_segNormal != null) _segNormal.color = _rankedMode ? C(0x22, 0x16, 0x0f) : BLUEDK;
+            if (_segRanked != null) _segRanked.color = _rankedMode ? C(0x8a, 0x2f, 0x1e) : C(0x22, 0x16, 0x0f);
+            if (_segNormalLbl != null) _segNormalLbl.color = _rankedMode ? DIM : C(0xdf, 0xf0, 0xff);
+            if (_segRankedLbl != null) _segRankedLbl.color = _rankedMode ? GOLDHI : DIM;
+            if (_modeHdrLbl != null) _modeHdrLbl.text = _rankedMode ? "CHẾ ĐỘ: XẾP HẠNG  (bấm để đổi)" : "CHẾ ĐỘ: THƯỜNG  (bấm để đổi)";
         }
 
         RectTransform BuildGridScroll(string name, RectTransform parent, Vector2 amin, Vector2 amax)
@@ -670,14 +768,21 @@ namespace LoRClone.View
             SpawnLabel(close.transform, "✕", 16f, INK, TextAlignmentOptions.Center, true);
             xBtn.onClick.AddListener(CloseDetail);
 
+            // ★ Ô CHẾ ĐỘ = NÚT ĐỔI CHẾ ĐỘ CHÍNH (bấm để đổi Thường ↔ Xếp hạng). Đồng bộ với toggle trên grid.
             var modehdr = MakeRect("ModeHdr", det, new Vector2(0.1f, 0.87f), new Vector2(0.82f, 0.95f));
-            SetRoundedGrad(modehdr, BLUE, BLUEDK, 10);
-            SpawnLabel(modehdr.transform, "XẾP HẠNG | VÔ HẠN", 14f, C(0xdf, 0xf0, 0xff), TextAlignmentOptions.Center, true);
+            var mhImg = SetRoundedGrad(modehdr, BLUE, BLUEDK, 10);
+            var mhBtn = modehdr.gameObject.AddComponent<Button>(); mhBtn.targetGraphic = mhImg;
+            ApplyBtnColors(mhBtn, Color.white, new Color(1, 1, 1, 0.9f));
+            mhBtn.onClick.AddListener(() => SetRanked(!_rankedMode));
+            _modeHdrLbl = SpawnLabel(modehdr.transform, "", 14f, C(0xdf, 0xf0, 0xff), TextAlignmentOptions.Center, true);
 
+            // Avatar người chơi (thay huy hiệu "III" cũ) — hiện ảnh đã chọn ở Hồ Sơ.
             var rank = MakeRect("Rank", det, new Vector2(0.38f, 0.72f), new Vector2(0.62f, 0.85f));
-            var rimg = rank.gameObject.AddComponent<Image>(); rimg.sprite = CircleSprite(); rimg.type = Image.Type.Simple;
-            rimg.color = C(0x9d, 0xb8, 0xd6); rimg.raycastTarget = false;
-            SpawnLabel(rank.transform, "III", 22f, C(0x12, 0x31, 0x4f), TextAlignmentOptions.Center, true);
+            var rimg = rank.gameObject.AddComponent<Image>(); rimg.type = Image.Type.Simple; rimg.raycastTarget = false;
+            _avatarDetail = rimg;
+            var avSel2 = LoRClone.Data.AvatarStore.Selected;
+            if (avSel2 != null) { rimg.sprite = avSel2; rimg.color = Color.white; }
+            else { rimg.sprite = CircleSprite(); rimg.color = C(0x9d, 0xb8, 0xd6); SpawnLabel(rank.transform, "III", 22f, C(0x12, 0x31, 0x4f), TextAlignmentOptions.Center, true); }
             SpawnLabel(MakeRect("Prog", det, new Vector2(0.1f, 0.66f), new Vector2(0.9f, 0.71f)),
                 "ĐNG: <b><color=#f6dd98>0</color></b> / 100", 13f, C(0xcf, 0xe0, 0xf2), TextAlignmentOptions.Center, false);
 
@@ -734,7 +839,7 @@ namespace LoRClone.View
         {
             if (_picked == null) { Say("Hãy chọn 1 bộ bài."); return; }
             if (_mode == "ai") StartAI();
-            else if (_popup != null) _popup.SetActive(true);
+            else StartPvP();   // vào thẳng theo chế độ THƯỜNG/XẾP HẠNG đã chọn — không hỏi popup nữa
         }
 
         // ── POPUP CHẾ ĐỘ ──
@@ -789,6 +894,7 @@ namespace LoRClone.View
         void StartPvP()
         {
             if (_picked == null || _picked.cards == null) return;
+            LoRClone.Net.RankSystem.RankedEnabled = _rankedMode;   // ★ trận này có tính MMR hay không
             LoRClone.Data.GauntletEntry.Leave();   // ★ xóa loadout cũ → PvP thường KHÔNG áp buff
             var names = new List<string>();
             foreach (var c in _picked.cards) if (c != null) names.Add(c.cardName);
@@ -801,6 +907,7 @@ namespace LoRClone.View
         void StartAI()
         {
             if (_picked == null) return;
+            ResetNetViewFlags();                   // ★ rào: PvP-client → Đấu Với Máy không bị lật view
             LoRClone.Data.GauntletEntry.Leave();   // ★ ISOLATION: xóa state gauntlet → Đấu Với Máy KHÔNG dính buff/item PvP-RPG
             LoRClone.GameConfig.playerDeck = _picked;
             LoRClone.GameConfig.enemyDeck = RandomEnemyDeck();

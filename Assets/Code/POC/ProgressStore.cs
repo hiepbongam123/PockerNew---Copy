@@ -34,6 +34,10 @@ namespace LoRClone.Data
             public List<string> ownedItems = new List<string>();
             // MỐC 14: số RƯƠNG đang có theo bậc [Thường, Hiếm, Tuyệt Phẩm, Huyền Thoại].
             public List<int> chests = new List<int>();
+            // RANK PvP: điểm MMR + thắng/thua (đồng bộ cloud). Mặc định 1000 cho tài khoản cũ (JsonUtility giữ initializer khi thiếu field).
+            public int rankMmr = 1000;
+            public int rankWins = 0;
+            public int rankLosses = 0;
         }
 
         static ProgressDTO _cache;
@@ -370,6 +374,23 @@ namespace LoRClone.Data
             if (p.unlockedCards.Contains(cardName)) return false;
             p.unlockedCards.Add(cardName); Save();
             return true;
+        }
+
+        // ── RANK PvP (MMR + W/L) — lưu local + đồng bộ cloud qua OnChanged ──
+        public const int RankStartMmr = 1000;
+        public static int RankMmr => Load().rankMmr;
+        public static int RankWins => Load().rankWins;
+        public static int RankLosses => Load().rankLosses;
+
+        /// <summary>Áp kết quả 1 trận rank: THẮNG +winDelta, THUA -lossDelta (sàn 'floor'). Trả MMR mới.</summary>
+        public static int ApplyRankResult(bool win, int winDelta, int lossDelta, int floor)
+        {
+            var p = Load();
+            if (win) { p.rankMmr += Mathf.Max(0, winDelta); p.rankWins++; }
+            else { p.rankMmr = Mathf.Max(floor, p.rankMmr - Mathf.Max(0, lossDelta)); p.rankLosses++; }
+            Save();   // → OnChanged → UgsAccount tự đẩy MMR mới lên cloud
+            Debug.Log($"[ProgressStore] Rank {(win ? "+" + winDelta : "-" + lossDelta)} → MMR {p.rankMmr} (W{p.rankWins}/L{p.rankLosses}).");
+            return p.rankMmr;
         }
 
         /// <summary>Xóa toàn bộ tiến độ (debug / chơi lại từ đầu).</summary>

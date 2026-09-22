@@ -62,6 +62,10 @@ namespace LoRClone.Controller
                 ChampionLoadoutApplier.Apply(
                     model.enemy, MatchContext.enemyLoadout, MatchContext.enemyChampionCard);
             }
+
+            // ★ RANK: cuối trận PvP (thường + gauntlet) → tính điểm MMR + đẩy leaderboard. Mỗi trận 1 lần.
+            LoRClone.Net.RankSystem.BeginMatch();
+            if (model != null) model.OnGameOver += _ => LoRClone.Net.RankSystem.ReportMatch(this);
         }
 
         /// <summary>HOOK — gọi trong StartGame NGAY SAU 'model = new GameModel();'. Set seed trước khi shuffle.</summary>
