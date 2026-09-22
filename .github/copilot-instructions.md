@@ -1,3 +1,10 @@
-- @azure Rule - Use Azure Tools - When handling requests related to Azure, always use your tools.
-- @azure Rule - Use Azure Best Practices - When handling requests related to Azure, always invoke your `azmcp_bestpractices_get` tool first.
-- @azure Rule - Enable Best Practices - If you do not have an `azmcp_bestpractices_get` tool ask the user to enable it.
+# Copilot / AI agent instructions
+
+Toàn bộ hướng dẫn cho AI agent (kiến trúc, pattern, quy ước, build) nằm trong **[`AGENTS.md`](../AGENTS.md)** ở thư mục gốc repo. Đọc file đó trước khi sửa code.
+
+Tóm tắt nhanh:
+- Game thẻ bài kiểu **Legends of Runeterra**, Unity 6 + C# (namespace `LoRClone.*`), đang reskin sang HSR Amphoreus. Tên "PockerNew" gây hiểu nhầm — **không phải game poker**.
+- `GameController` là **partial class** chia theo feature slice; thêm logic vào đúng slice.
+- Skill mới = class kế thừa `SkillData` trong `Assets/Code/Code Skill/`; chỉ data + `Execute()`, gọi ngược về `GameController` qua `ctx.controller`.
+- Data-driven bằng ScriptableObject trong `Assets/Data/*`; tách lớp Data/Model/View/Controller.
+- Comment viết bằng **tiếng Việt**. Không sửa `Assets/Photon/**`, không commit file auto-gen (`Library/`, `*.csproj`, `*.sln`), luôn giữ file `.meta`.
