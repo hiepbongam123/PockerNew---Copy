@@ -123,6 +123,20 @@ namespace LoRClone.View
             Action<CardModel> onConfirmed,
             Action onCancel = null)
         {
+            // FIX (softlock): nếu đang có 1 phiên chọn target CHƯA kết thúc mà một phiên mới
+            // bắt đầu (2 luồng targeting chồng lên nhau), phải HỦY phiên cũ để onCancel của nó
+            // fire. Nếu không, coroutine đang chờ phiên cũ (while(!done) trong
+            // StartUnitSkillTargeting/StartEquipmentTargeting, hoặc battle-skill coroutine của
+            // GameController) sẽ chờ mãi mãi → TREO GAME.
+            if (_selecting)
+            {
+                var prevCancel = _onCancel;
+                _onConfirmed = null;
+                _onCancel = null;
+                ClearSelectingState();
+                prevCancel?.Invoke();
+            }
+
             // KHÔNG xóa locked arrows — các spell khác trên stack vẫn hiện arrow
             _selecting = true;
             _srcCV = srcCV;
@@ -225,7 +239,8 @@ namespace LoRClone.View
         public void ClearLocked()
         {
             ClearAllLockedArrows();
-            if (_selecting) ClearSelectingState();
+            // FIX (softlock): Cancel() để onCancel fire — tránh treo coroutine đang chờ phiên targeting.
+            if (_selecting) Cancel();
         }
 
         // ── Helpers ───────────────────────────────────────────────
